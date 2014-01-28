@@ -1,4 +1,7 @@
+.DS_Store
+
 # built application files
+*.keystroke
 *.apk
 *.ap_
 
@@ -11,6 +14,7 @@
 # generated files
 bin/
 gen/
+build/
 
 # Local configuration file (sdk path, etc)
 local.properties
@@ -23,7 +27,12 @@ local.properties
 proguard/
 
 # Intellij project files
-*.iml
 *.ipr
 *.iws
-.idea/
+.idea/workspace.xml
+.idea/libraries
+.idea/dictionaries
+.idea/copyright
+
+# Gradle
+.gradle
