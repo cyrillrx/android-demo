@@ -1,13 +1,13 @@
 package es.org.navdrawerapp;
 
-
-import android.app.ActionBar;
 import android.app.Activity;
 import android.app.Fragment;
 import android.content.SharedPreferences;
 import android.os.Bundle;
 import android.preference.PreferenceManager;
 import android.support.v4.widget.DrawerLayout;
+import android.support.v7.app.ActionBar;
+import android.support.v7.app.ActionBarActivity;
 import android.view.Gravity;
 import android.view.Menu;
 import android.view.MenuInflater;
@@ -153,9 +153,10 @@ public abstract class AbstractNavigationDrawerFragment extends Fragment {
 
     /**
      * Convenient method to get the action bar activity.
+     *
      * @return The action bar activity.
      */
-    protected ActionBar getActionBar() { return getActivity().getActionBar(); }
+    protected ActionBar getActionBar() { return ((ActionBarActivity) getActivity()).getSupportActionBar(); }
 
     /**
      * Callbacks interface that all activities using this fragment must implement.

@@ -1,16 +1,12 @@
 package es.org.navdrawerapp;
 
-
-import android.app.ActionBar;
 import android.content.SharedPreferences;
 import android.os.Bundle;
 import android.preference.PreferenceManager;
 import android.support.v4.widget.DrawerLayout;
+import android.support.v7.app.ActionBar;
 import android.view.Gravity;
 import android.view.LayoutInflater;
-import android.view.Menu;
-import android.view.MenuInflater;
-import android.view.MenuItem;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.AdapterView;
@@ -73,7 +69,7 @@ public class RightDrawerFragment extends AbstractNavigationDrawerFragment {
                 selectItem(position);
             }
         });
-        mDrawerListView.setAdapter(new ArrayAdapter<String>(
+        mDrawerListView.setAdapter(new ArrayAdapter<>(
                 getActionBar().getThemedContext(),
                 android.R.layout.simple_list_item_activated_1,
                 android.R.id.text1,
@@ -98,7 +94,7 @@ public class RightDrawerFragment extends AbstractNavigationDrawerFragment {
         mDrawerLayout = drawerLayout;
 
         // set a custom shadow that overlays the main content when the drawer opens
-        mDrawerLayout.setDrawerShadow(R.drawable.drawer_shadow, Gravity.END);
+        mDrawerLayout.setDrawerShadow(R.drawable.drawer_shadow_right, Gravity.END);
         // set up the drawer's list view with items and click listener
 
         ActionBar actionBar = getActionBar();
