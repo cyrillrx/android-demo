@@ -3,13 +3,13 @@
 
     <string name="app_name">Double NavDrawer</string>
 
-    <string name="title_section1">Section 1</string>
-    <string name="title_section2">Section 2</string>
-    <string name="title_section3">Section 3</string>
+    <string name="title_section_left_1">Section Left 1</string>
+    <string name="title_section_left_2">Section Left 2</string>
+    <string name="title_section_left_3">Section Left 3</string>
 
-    <string name="title_section4">Section 4</string>
-    <string name="title_section5">Section 5</string>
-    <string name="title_section6">Section 6</string>
+    <string name="title_section4">Section Right 1</string>
+    <string name="title_section5">Section Right 2</string>
+    <string name="title_section6">Section Right 3</string>
 
     <string name="navigation_drawer_open">Open navigation drawer</string>
     <string name="navigation_drawer_close">Close navigation drawer</string>

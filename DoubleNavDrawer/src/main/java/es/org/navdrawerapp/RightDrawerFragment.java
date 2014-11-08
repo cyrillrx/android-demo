@@ -88,7 +88,6 @@ public class RightDrawerFragment extends AbstractNavigationDrawerFragment {
      * @param fragmentId   The android:id of this fragment in its activity's layout.
      * @param drawerLayout The DrawerLayout containing this fragment's UI.
      */
-    @Override
     public void setUp(int fragmentId, DrawerLayout drawerLayout) {
         mFragmentContainerView = getActivity().findViewById(fragmentId);
         mDrawerLayout = drawerLayout;
@@ -97,16 +96,16 @@ public class RightDrawerFragment extends AbstractNavigationDrawerFragment {
         mDrawerLayout.setDrawerShadow(R.drawable.drawer_shadow_right, Gravity.END);
         // set up the drawer's list view with items and click listener
 
-        ActionBar actionBar = getActionBar();
-        actionBar.setDisplayHomeAsUpEnabled(true);
-        actionBar.setHomeButtonEnabled(true);
+//        ActionBar actionBar = getActionBar();
+//        actionBar.setDisplayHomeAsUpEnabled(true);
+//        actionBar.setHomeButtonEnabled(true);
 
         // If the user hasn't 'learned' about the drawer, open it to introduce them to the drawer,
         // per the navigation drawer design guidelines.
         if (!mUserLearnedDrawer && !mFromSavedInstanceState) {
             mDrawerLayout.openDrawer(mFragmentContainerView);
         }
-        mDrawerLayout.setDrawerListener(mDrawerListener);
+//        mDrawerLayout.setDrawerListener(mDrawerListener);
     }
 
     @Override

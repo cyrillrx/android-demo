@@ -61,33 +61,6 @@ public abstract class AbstractNavigationDrawerFragment extends Fragment {
         selectItem(mCurrentSelectedPosition);
     }
 
-    /**
-     * Per the design guidelines, you should show the drawer on launch until the user manually
-     * expands it. This shared preference tracks this.
-     */
-    protected abstract String getUserLearnDrawerKey();
-
-    @Override
-    public void onActivityCreated(Bundle savedInstanceState) {
-        super.onActivityCreated(savedInstanceState);
-        // Indicate that this fragment would like to influence the set of actions in the action bar.
-        setHasOptionsMenu(true);
-    }
-
-    public boolean isDrawerOpen() {
-        return mDrawerLayout != null && mDrawerLayout.isDrawerOpen(mFragmentContainerView);
-    }
-
-    /**
-     * Users of this fragment must call this method to set up the navigation drawer interactions.
-     *
-     * @param fragmentId   The android:id of this fragment in its activity's layout.
-     * @param drawerLayout The DrawerLayout containing this fragment's UI.
-     */
-    public abstract void setUp(int fragmentId, DrawerLayout drawerLayout);
-
-    protected abstract void selectItem(int position);
-
     @Override
     public void onAttach(Activity activity) {
         super.onAttach(activity);
@@ -102,6 +75,13 @@ public abstract class AbstractNavigationDrawerFragment extends Fragment {
     public void onDetach() {
         super.onDetach();
         mCallbacks = null;
+    }
+
+    @Override
+    public void onActivityCreated(Bundle savedInstanceState) {
+        super.onActivityCreated(savedInstanceState);
+        // Indicate that this fragment would like to influence the set of actions in the action bar.
+        setHasOptionsMenu(true);
     }
 
     @Override
@@ -141,6 +121,18 @@ public abstract class AbstractNavigationDrawerFragment extends Fragment {
     }
 
     /**
+     * Per the design guidelines, you should show the drawer on launch until the user manually
+     * expands it. This shared preference tracks this.
+     */
+    protected abstract String getUserLearnDrawerKey();
+
+    public boolean isDrawerOpen() {
+        return mDrawerLayout != null && mDrawerLayout.isDrawerOpen(mFragmentContainerView);
+    }
+
+    protected abstract void selectItem(int position);
+
+    /**
      * Per the navigation drawer design guidelines, updates the action bar to show the global app
      * 'context', rather than just what's in the current screen.
      */
@@ -156,7 +148,9 @@ public abstract class AbstractNavigationDrawerFragment extends Fragment {
      *
      * @return The action bar activity.
      */
-    protected ActionBar getActionBar() { return ((ActionBarActivity) getActivity()).getSupportActionBar(); }
+    protected ActionBar getActionBar() {
+        return ((ActionBarActivity) getActivity()).getSupportActionBar();
+    }
 
     /**
      * Callbacks interface that all activities using this fragment must implement.
