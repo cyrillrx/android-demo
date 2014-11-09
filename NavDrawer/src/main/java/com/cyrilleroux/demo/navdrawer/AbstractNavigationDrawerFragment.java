@@ -1,4 +1,4 @@
-package org.es.androiddemo.navdrawer;
+package com.cyrilleroux.demo.navdrawer;
 
 import android.app.Activity;
 import android.app.Fragment;
@@ -105,14 +105,14 @@ public abstract class AbstractNavigationDrawerFragment extends Fragment {
     public boolean onOptionsItemSelected(MenuItem item) {
 
         if (item.getItemId() == R.id.action_example) {
-            if (mDrawerLayout.isDrawerVisible(Gravity.RIGHT)) {
-                mDrawerLayout.closeDrawer(Gravity.RIGHT);
+            if (mDrawerLayout.isDrawerVisible(Gravity.END)) {
+                mDrawerLayout.closeDrawer(Gravity.END);
             } else {
                 // Close the left drawer if necessary
-                if (mDrawerLayout.isDrawerVisible(Gravity.LEFT)) {
-                    mDrawerLayout.closeDrawer(Gravity.LEFT);
+                if (mDrawerLayout.isDrawerVisible(Gravity.START)) {
+                    mDrawerLayout.closeDrawer(Gravity.START);
                 }
-                mDrawerLayout.openDrawer(Gravity.RIGHT);
+                mDrawerLayout.openDrawer(Gravity.END);
             }
             return true;
         }

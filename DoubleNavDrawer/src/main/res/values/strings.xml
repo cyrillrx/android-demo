@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
 
-    <string name="app_name">Double NavDrawer</string>
+    <string name="app_name">.Double NavDrawer</string>
 
     <string name="title_section_left_1">Section Left 1</string>
     <string name="title_section_left_2">Section Left 2</string>

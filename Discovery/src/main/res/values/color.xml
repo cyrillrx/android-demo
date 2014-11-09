@@ -5,13 +5,10 @@
     <!-- Main theme colors -->
 
     <!--   your app branding color for the app bar -->
-    <color name="primary">#ff01bbd3</color>
+    <color name="primary">#ff0098cb</color>
     <!--   darker variant for the status bar and contextual app bars -->
-    <color name="primary_dark">#ff0196a6</color>
+    <color name="primary_dark">#ff003c51</color>
     <!--   theme UI controls like checkboxes and text fields -->
-    <color name="accent">#ffd61c61</color>
-
-    <color name="list_bg">#ffd2d2d2</color>
-    <color name="selected_item">#ffb4b4b4</color>
+    <color name="accent">#ff003c51</color>
 
 </resources>
