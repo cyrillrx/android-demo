@@ -1,3 +1,6 @@
-include ':Beam', ':Discovery'
+include ':Beam'
 include ':NavDrawer'
 include ':DoubleNavDrawer'
+include ':Discovery'
+include ':RaspWatcher'
+include ':Webview'
