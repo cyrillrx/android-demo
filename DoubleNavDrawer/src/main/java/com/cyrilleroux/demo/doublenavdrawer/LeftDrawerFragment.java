@@ -1,4 +1,4 @@
-package com.cyrilleroux.demo.navdrawer;
+package com.cyrilleroux.demo.doublenavdrawer;
 
 import android.content.SharedPreferences;
 import android.content.res.Configuration;
@@ -15,8 +15,6 @@ import android.view.ViewGroup;
 import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
 import android.widget.ListView;
-
-import es.org.navdrawerapp.R;
 
 public class LeftDrawerFragment extends AbstractNavigationDrawerFragment {
 

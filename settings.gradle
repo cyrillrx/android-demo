@@ -1,4 +1,4 @@
-include ':Beam'
+include ':Beam', ':KitkatTv'
 include ':NavDrawer'
 include ':DoubleNavDrawer'
 include ':Discovery'

@@ -138,7 +138,7 @@ public class MainActivity extends ActionBarActivity
         @Override
         public void onViewCreated(View view, Bundle savedInstanceState) {
             super.onViewCreated(view, savedInstanceState);
-            ((TextView)view.findViewById(R.id.section_label)).setText("Section " + getArguments().getInt(ARG_SECTION_NUMBER));
+            ((TextView) view.findViewById(R.id.section_label)).setText("Section " + getArguments().getInt(ARG_SECTION_NUMBER));
         }
     }
 }

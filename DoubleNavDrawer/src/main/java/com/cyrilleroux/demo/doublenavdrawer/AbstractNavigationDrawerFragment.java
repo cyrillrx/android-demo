@@ -1,4 +1,4 @@
-package com.cyrilleroux.demo.navdrawer;
+package com.cyrilleroux.demo.doublenavdrawer;
 
 import android.app.Activity;
 import android.app.Fragment;
@@ -14,8 +14,6 @@ import android.view.MenuInflater;
 import android.view.MenuItem;
 import android.view.View;
 import android.widget.ListView;
-
-import es.org.navdrawerapp.R;
 
 /**
  * Fragment used for managing interactions for and presentation of a navigation drawer.

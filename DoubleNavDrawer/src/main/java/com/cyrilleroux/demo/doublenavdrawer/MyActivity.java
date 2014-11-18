@@ -1,4 +1,4 @@
-package com.cyrilleroux.demo.navdrawer;
+package com.cyrilleroux.demo.doublenavdrawer;
 
 import android.app.Activity;
 import android.app.Fragment;
@@ -12,8 +12,6 @@ import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
 import android.view.ViewGroup;
-
-import es.org.navdrawerapp.R;
 
 public class MyActivity extends ActionBarActivity
         implements AbstractNavigationDrawerFragment.NavigationDrawerCallbacks {

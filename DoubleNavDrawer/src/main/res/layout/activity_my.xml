@@ -23,7 +23,7 @@
          the container. -->
     <fragment
         android:id="@+id/main_navigation_drawer"
-        android:name="com.cyrilleroux.demo.navdrawer.LeftDrawerFragment"
+        android:name="com.cyrilleroux.demo.doublenavdrawer.LeftDrawerFragment"
         android:layout_width="@dimen/navigation_drawer_width"
         android:layout_height="match_parent"
         android:layout_gravity="start"
@@ -31,7 +31,7 @@
 
     <fragment
         android:id="@+id/right_navigation_drawer"
-        android:name="com.cyrilleroux.demo.navdrawer.RightDrawerFragment"
+        android:name="com.cyrilleroux.demo.doublenavdrawer.RightDrawerFragment"
         android:layout_width="@dimen/navigation_drawer_width"
         android:layout_height="match_parent"
         android:layout_gravity="end"
