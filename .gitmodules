@@ -1,0 +1,3 @@
+[submodule "libraries/android_libraries"]
+	path = libraries/android_libraries
+	url = git@github.com:Elasticboy/android_libraries.git

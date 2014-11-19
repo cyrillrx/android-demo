@@ -1,4 +1,4 @@
-package com.cyrilleroux.demo.navdrawer;
+package com.cyrilleroux.android.demo.drawer;
 
 import android.app.Activity;
 import android.app.Fragment;
@@ -14,7 +14,9 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.TextView;
 
-public class MainActivity extends ActionBarActivity
+import com.cyrilleroux.android.demo.R;
+
+public class SimpleDrawerActivity extends ActionBarActivity
         implements NavigationDrawerFragment.NavigationDrawerCallbacks {
 
     /**
@@ -30,7 +32,7 @@ public class MainActivity extends ActionBarActivity
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_main);
+        setContentView(R.layout.activity_nav);
 
         mTitle = getTitle();
         mNavigationDrawerFragment = (NavigationDrawerFragment) getFragmentManager().findFragmentById(R.id.navigation_drawer);
@@ -52,13 +54,13 @@ public class MainActivity extends ActionBarActivity
     public void onSectionAttached(int number) {
         switch (number) {
             case 1:
-                mTitle = getString(R.string.title_section1);
+                mTitle = getString(R.string.title_section_left_1);
                 break;
             case 2:
-                mTitle = getString(R.string.title_section2);
+                mTitle = getString(R.string.title_section_left_2);
                 break;
             case 3:
-                mTitle = getString(R.string.title_section3);
+                mTitle = getString(R.string.title_section_left_3);
                 break;
         }
     }
@@ -132,7 +134,7 @@ public class MainActivity extends ActionBarActivity
         @Override
         public void onAttach(Activity activity) {
             super.onAttach(activity);
-            ((MainActivity) activity).onSectionAttached(getArguments().getInt(ARG_SECTION_NUMBER));
+            ((SimpleDrawerActivity) activity).onSectionAttached(getArguments().getInt(ARG_SECTION_NUMBER));
         }
 
         @Override

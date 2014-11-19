@@ -6,7 +6,7 @@ android {
 
     defaultConfig {
         applicationId "com.cyrilleroux.kitkattv"
-        minSdkVersion project.ANDROID_BUILD_MIN_SDK_VERSION as int
+        minSdkVersion 17
         targetSdkVersion project.ANDROID_BUILD_TARGET_SDK_VERSION as int
         versionCode 1
         versionName "1.0"
@@ -26,6 +26,6 @@ android {
 }
 
 dependencies {
-    compile 'com.android.support:appcompat-v7:21.0.0'
+    compile 'com.android.support:appcompat-v7:21.0.2'
     compile 'com.android.support:leanback-v17:21.0.0'
 }

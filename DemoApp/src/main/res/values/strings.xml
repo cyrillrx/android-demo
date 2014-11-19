@@ -1,0 +1,23 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+
+    <string name="app_name">Cyril\'s Demo</string>
+
+    <string name="title_simple_nav">Simple NavDrawer</string>
+    <string name="title_double_nav">Double NavDrawer</string>
+
+    <string name="title_section_left_1">Section Left 1</string>
+    <string name="title_section_left_2">Section Left 2</string>
+    <string name="title_section_left_3">Section Left 3</string>
+
+    <string name="title_section_right_1">Section Right 1</string>
+    <string name="title_section_right_2">Section Right 2</string>
+    <string name="title_section_right_3">Section Right 3</string>
+
+    <string name="navigation_drawer_open">Open navigation drawer</string>
+    <string name="navigation_drawer_close">Close navigation drawer</string>
+
+    <string name="action_example">Example action</string>
+    <string name="action_settings">Settings</string>
+
+</resources>

@@ -13,7 +13,7 @@ import android.view.MenuItem;
 import android.view.View;
 import android.view.ViewGroup;
 
-public class MyActivity extends ActionBarActivity
+public class DoubleDrawerActivity extends ActionBarActivity
         implements AbstractNavigationDrawerFragment.NavigationDrawerCallbacks {
 
     /**
@@ -30,7 +30,7 @@ public class MyActivity extends ActionBarActivity
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_my);
+        setContentView(R.layout.activity_double_nav);
 
         mTitle = getTitle();
         mLeftDrawerFragment = (LeftDrawerFragment) getFragmentManager().findFragmentById(R.id.main_navigation_drawer);
@@ -135,7 +135,7 @@ public class MyActivity extends ActionBarActivity
         @Override
         public void onAttach(Activity activity) {
             super.onAttach(activity);
-            ((MyActivity) activity).onSectionAttached(getArguments().getInt(ARG_SECTION_NUMBER));
+            ((DoubleDrawerActivity) activity).onSectionAttached(getArguments().getInt(ARG_SECTION_NUMBER));
         }
     }
 }

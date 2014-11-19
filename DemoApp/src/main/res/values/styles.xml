@@ -1,0 +1,23 @@
+<resources>
+
+
+    <style name="SimpleNavTheme" parent="Theme.AppCompat.Light.DarkActionBar">
+        <item name="colorPrimary">@color/nav_primary</item>
+        <item name="colorPrimaryDark">@color/nav_primary_dark</item>
+        <item name="colorAccent">@color/nav_accent</item>
+    </style>
+
+    <style name="DoubleNavTheme" parent="Theme.AppCompat.Light.DarkActionBar">
+        <item name="colorPrimary">@color/double_nav_primary</item>
+        <item name="colorPrimaryDark">@color/double_nav_primary_dark</item>
+        <item name="colorAccent">@color/double_nav_accent</item>
+    </style>
+
+    <!-- Base application theme. -->
+    <style name="AppTheme" parent="android:Theme.Holo.Light.DarkActionBar">
+        <item name="colorPrimary">@color/primary</item>
+        <item name="colorPrimaryDark">@color/primary_dark</item>
+        <item name="colorAccent">@color/accent</item>
+    </style>
+
+</resources>
