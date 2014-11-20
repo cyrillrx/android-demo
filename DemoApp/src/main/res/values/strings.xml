@@ -3,6 +3,7 @@
 
     <string name="app_name">Cyril\'s Demo</string>
 
+    <string name="title_unlock">Hold to unlock</string>
     <string name="title_simple_nav">Simple NavDrawer</string>
     <string name="title_double_nav">Double NavDrawer</string>
 

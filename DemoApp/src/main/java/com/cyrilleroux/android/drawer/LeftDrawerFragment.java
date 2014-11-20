@@ -1,13 +1,13 @@
-package com.cyrilleroux.android.demo.drawer;
+package com.cyrilleroux.android.drawer;
 
 import android.content.SharedPreferences;
 import android.content.res.Configuration;
 import android.os.Bundle;
 import android.preference.PreferenceManager;
-import android.support.v4.view.GravityCompat;
 import android.support.v4.widget.DrawerLayout;
 import android.support.v7.app.ActionBar;
 import android.support.v7.app.ActionBarDrawerToggle;
+import android.view.Gravity;
 import android.view.LayoutInflater;
 import android.view.MenuItem;
 import android.view.View;
@@ -15,16 +15,10 @@ import android.view.ViewGroup;
 import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
 import android.widget.ListView;
-import android.widget.Toast;
 
 import com.cyrilleroux.android.demo.R;
 
-/**
- * Fragment used for managing interactions for and presentation of a navigation drawer.
- * See the <a href="https://developer.android.com/design/patterns/navigation-drawer.html#Interaction">
- * design guidelines</a> for a complete explanation of the behaviors implemented here.
- */
-public class NavigationDrawerFragment extends AbstractNavigationDrawerFragment {
+public class LeftDrawerFragment extends AbstractNavigationDrawerFragment {
 
     /**
      * Per the design guidelines, you should show the drawer on launch until the user manually
@@ -37,7 +31,8 @@ public class NavigationDrawerFragment extends AbstractNavigationDrawerFragment {
      */
     private ActionBarDrawerToggle mDrawerToggle;
 
-    public NavigationDrawerFragment() { }
+
+    public LeftDrawerFragment() { }
 
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
@@ -51,7 +46,7 @@ public class NavigationDrawerFragment extends AbstractNavigationDrawerFragment {
         });
         mDrawerListView.setAdapter(new ArrayAdapter<>(
                 getActionBar().getThemedContext(),
-                R.layout.nav_list_item,
+                android.R.layout.simple_list_item_activated_1,
                 android.R.id.text1,
                 new String[]{
                         getString(R.string.title_section_left_1),
@@ -72,14 +67,12 @@ public class NavigationDrawerFragment extends AbstractNavigationDrawerFragment {
     @Override
     public boolean onOptionsItemSelected(MenuItem item) {
         if (mDrawerToggle.onOptionsItemSelected(item)) {
+            // Close the right drawer if necessary
+            if (mDrawerLayout.isDrawerVisible(Gravity.RIGHT)) {
+                mDrawerLayout.closeDrawer(Gravity.RIGHT);
+            }
             return true;
         }
-
-        if (item.getItemId() == R.id.action_example) {
-            Toast.makeText(getActivity(), "Example action.", Toast.LENGTH_SHORT).show();
-            return true;
-        }
-
         return super.onOptionsItemSelected(item);
     }
 
@@ -99,7 +92,7 @@ public class NavigationDrawerFragment extends AbstractNavigationDrawerFragment {
         mDrawerLayout = drawerLayout;
 
         // set a custom shadow that overlays the main content when the drawer opens
-        mDrawerLayout.setDrawerShadow(R.drawable.drawer_shadow_left, GravityCompat.START);
+        mDrawerLayout.setDrawerShadow(R.drawable.drawer_shadow_left, Gravity.START);
         // set up the drawer's list view with items and click listener
 
         ActionBar actionBar = getActionBar();
@@ -120,7 +113,6 @@ public class NavigationDrawerFragment extends AbstractNavigationDrawerFragment {
                 if (!isAdded()) {
                     return;
                 }
-
                 getActivity().invalidateOptionsMenu(); // calls onPrepareOptionsMenu()
             }
 
@@ -139,7 +131,6 @@ public class NavigationDrawerFragment extends AbstractNavigationDrawerFragment {
                             .getDefaultSharedPreferences(getActivity());
                     sp.edit().putBoolean(PREF_USER_LEARNED_DRAWER, true).apply();
                 }
-
                 getActivity().invalidateOptionsMenu(); // calls onPrepareOptionsMenu()
             }
         };
@@ -159,6 +150,7 @@ public class NavigationDrawerFragment extends AbstractNavigationDrawerFragment {
         mDrawerLayout.setDrawerListener(mDrawerToggle);
     }
 
+    @Override
     protected void selectItem(int position) {
         mCurrentSelectedPosition = position;
         if (mDrawerListView != null) {

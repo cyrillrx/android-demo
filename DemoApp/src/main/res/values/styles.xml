@@ -1,23 +1,54 @@
 <resources>
 
+    <!-- Base application theme. -->
+    <style name="AppTheme" parent="android:Theme.Holo.Light.DarkActionBar">
+        <item name="android:actionBarStyle">@style/Custom.ActionBar</item>
+    </style>
 
-    <style name="SimpleNavTheme" parent="Theme.AppCompat.Light.DarkActionBar">
+    <style name="Custom.ActionBar" parent="@android:style/Widget.Holo.Light.ActionBar">
+        <item name="android:background">@color/primary</item>
+        <item name="android:displayOptions">showTitle</item>
+        <item name="android:titleTextStyle">@style/MyTheme.ActionBar.TitleTextStyle</item>
+    </style>
+
+    <style name="MyTheme.ActionBar.TitleTextStyle" parent="@android:style/TextAppearance.Holo.Widget.ActionBar.Title">
+        <item name="android:textColor">@android:color/primary_text_dark</item>
+    </style>
+
+    <style name="BaseCompatTheme" parent="Theme.AppCompat.Light.DarkActionBar" />
+
+    <style name="UnlockTheme" parent="BaseCompatTheme">
+        <item name="colorPrimary">@color/unlock_primary</item>
+        <item name="colorPrimaryDark">@color/unlock_primary_dark</item>
+        <item name="colorAccent">@color/unlock_accent</item>
+    </style>
+
+    <style name="SimpleNavTheme" parent="BaseCompatTheme">
         <item name="colorPrimary">@color/nav_primary</item>
         <item name="colorPrimaryDark">@color/nav_primary_dark</item>
         <item name="colorAccent">@color/nav_accent</item>
     </style>
 
-    <style name="DoubleNavTheme" parent="Theme.AppCompat.Light.DarkActionBar">
+    <style name="DoubleNavTheme" parent="BaseCompatTheme">
         <item name="colorPrimary">@color/double_nav_primary</item>
         <item name="colorPrimaryDark">@color/double_nav_primary_dark</item>
         <item name="colorAccent">@color/double_nav_accent</item>
     </style>
 
-    <!-- Base application theme. -->
-    <style name="AppTheme" parent="android:Theme.Holo.Light.DarkActionBar">
-        <item name="colorPrimary">@color/primary</item>
-        <item name="colorPrimaryDark">@color/primary_dark</item>
-        <item name="colorAccent">@color/accent</item>
+    <style name="BaseText">
+        <item name="android:textColor">@android:color/primary_text_light</item>
+    </style>
+
+    <style name="SampleTitle" parent="BaseText">
+        <item name="android:textSize">@dimen/text_title</item>
+    </style>
+
+    <style name="SampleSubtitle" parent="BaseText">
+        <item name="android:textSize">@dimen/text_subtitle</item>
+    </style>
+
+    <style name="PlaceholderText" parent="BaseText">
+        <item name="android:textSize">@dimen/text_placeholder</item>
     </style>
 
 </resources>

@@ -8,6 +8,9 @@
     <!--   theme UI controls like checkboxes and text fields -->
     <color name="accent">#ff31ace0</color>
 
+    <color name="unlock_primary">#ff01bbd3</color>
+    <color name="unlock_primary_dark">#ff0196a6</color>
+    <color name="unlock_accent">#ff74d336</color>
 
     <color name="nav_primary">#ff01bbd3</color>
     <color name="nav_primary_dark">#ff0196a6</color>

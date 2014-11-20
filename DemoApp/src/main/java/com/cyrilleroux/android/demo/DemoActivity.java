@@ -6,9 +6,9 @@ import android.os.Bundle;
 import android.view.View;
 import android.widget.AdapterView;
 
-import com.cyrilleroux.android.demo.drawer.DoubleDrawerActivity;
-import com.cyrilleroux.android.demo.drawer.SimpleDrawerActivity;
-import com.cyrilleroux.android.demo.unlock.UnlockActivity;
+import com.cyrilleroux.android.drawer.DoubleDrawerActivity;
+import com.cyrilleroux.android.drawer.SimpleDrawerActivity;
+import com.cyrilleroux.android.unlock.UnlockActivity;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -20,7 +20,7 @@ public class DemoActivity extends ListActivity implements AdapterView.OnItemClic
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_main);
+        setContentView(R.layout.activity_demo_home);
 
         final List<Sample> samples = new ArrayList<>();
         samples.add(new Sample("UnlockActivity", "Touch all the targets to complete the activity.", UnlockActivity.class));

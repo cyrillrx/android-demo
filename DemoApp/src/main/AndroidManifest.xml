@@ -20,15 +20,17 @@
             </intent-filter>
         </activity>
 
-        <activity android:name=".unlock.UnlockActivity" />
+        <activity android:name="com.cyrilleroux.android.unlock.UnlockActivity"
+            android:label="@string/title_unlock"
+            android:theme="@style/UnlockTheme"/>
 
         <activity
-            android:name=".drawer.SimpleDrawerActivity"
+            android:name="com.cyrilleroux.android.drawer.SimpleDrawerActivity"
             android:label="@string/title_simple_nav"
             android:theme="@style/SimpleNavTheme" />
 
         <activity
-            android:name=".drawer.DoubleDrawerActivity"
+            android:name="com.cyrilleroux.android.drawer.DoubleDrawerActivity"
             android:label="@string/title_double_nav"
             android:theme="@style/DoubleNavTheme" />
 

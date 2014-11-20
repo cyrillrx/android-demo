@@ -1,7 +1,7 @@
-package com.cyrilleroux.android.demo.unlock;
+package com.cyrilleroux.android.unlock;
 
-import android.app.Activity;
 import android.os.Bundle;
+import android.support.v7.app.ActionBarActivity;
 import android.view.MotionEvent;
 import android.view.View;
 import android.widget.ProgressBar;
@@ -14,7 +14,7 @@ import com.cyrilleroux.android.demo.R;
 /**
  * Created on 02/10/2014.
  */
-public class UnlockActivity extends Activity implements View.OnTouchListener, CompletionListener {
+public class UnlockActivity extends ActionBarActivity implements View.OnTouchListener, CompletionListener {
 
     private static final int DURATION_MS = 1000;
     private static final long STEP_MS = 10;

@@ -1,4 +1,4 @@
-package com.cyrilleroux.android.demo.drawer;
+package com.cyrilleroux.android.drawer;
 
 import android.content.SharedPreferences;
 import android.os.Bundle;

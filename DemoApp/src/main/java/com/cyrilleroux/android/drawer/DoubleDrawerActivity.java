@@ -1,4 +1,4 @@
-package com.cyrilleroux.android.demo.drawer;
+package com.cyrilleroux.android.drawer;
 
 import android.app.Activity;
 import android.app.Fragment;
