@@ -1,12 +1,9 @@
 include ':DemoApp'
-include ':Beam'
-include ':KitkatTv'
-include ':NavDrawer'
-include ':DoubleNavDrawer'
-include ':Discovery'
 include ':RaspWatcher'
+include ':Discovery'
 include ':Webview'
-
+include ':KitkatTv'
+include ':Beam'
 
 // Git submodules
 
