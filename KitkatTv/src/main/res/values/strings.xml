@@ -1,3 +1,9 @@
 <resources>
+
     <string name="app_name">Kitkat Tv</string>
+
+    <string name="btn_browse_content">Browse</string>
+    <string name="btn_2">Btn 2</string>
+    <string name="btn_3">Btn 3</string>
+
 </resources>

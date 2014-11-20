@@ -1,0 +1,23 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+
+    <!--   your app branding color for the app bar -->
+    <color name="primary">#ff9e31a3</color>
+    <!--   darker variant for the status bar and contextual app bars -->
+    <color name="primary_dark">#ff662e6b</color>
+    <!--   theme UI controls like checkboxes and text fields -->
+    <color name="accent">#ff31ace0</color>
+
+
+    <color name="huge_green">#ffd1e661</color>
+    <color name="huge_green_dark">#ffabd719</color>
+
+    <color name="huge_orange">#fff48b4d</color>
+    <color name="huge_orange_dark">#fff37d13</color>
+
+    <color name="huge_blue">#ff5dc9dd</color>
+    <color name="huge_blue_dark">#ff3aadd7</color>
+
+    <color name="huge_red">#ffed3a41</color>
+    <color name="huge_red_dark">#ffdf3237</color>
+</resources>
