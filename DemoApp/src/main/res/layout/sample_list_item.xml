@@ -7,13 +7,13 @@
 
     <TextView
         android:id="@android:id/text1"
-        style="@style/SampleTitle"
+        style="@style/sample_title"
         android:layout_width="match_parent"
         android:layout_height="wrap_content" />
 
     <TextView
         android:id="@android:id/text2"
-        style="@style/SampleSubtitle"
+        style="@style/sample_subtitle"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_below="@android:id/text1" />

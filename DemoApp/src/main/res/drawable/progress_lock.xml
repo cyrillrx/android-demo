@@ -33,7 +33,8 @@
             <shape
                 android:innerRadiusRatio="2.45"
                 android:shape="ring"
-                android:thicknessRatio="11">
+                android:thicknessRatio="11"
+                android:useLevel="true">
                 <solid android:color="@color/unlock_primary_dark" />
             </shape>
         </rotate>

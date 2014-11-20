@@ -1,5 +1,10 @@
 <?xml version="1.0" encoding="utf-8"?>
+
 <resources>
+
+    <!--
+        App styles
+    -->
 
     <style name="BaseText">
         <item name="android:textColor">@android:color/primary_text_light</item>
