@@ -3,7 +3,6 @@ include ':RaspWatcher'
 include ':Discovery'
 include ':Webview'
 include ':KitkatTv'
-include ':Beam'
 
 // Git submodules
 
