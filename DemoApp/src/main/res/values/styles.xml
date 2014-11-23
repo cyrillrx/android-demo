@@ -44,6 +44,12 @@
         <item name="colorAccent">@color/double_nav_accent</item>
     </style>
 
+    <style name="FadingActionBar" parent="UnlockTheme">
+        <item name="windowActionModeOverlay">true</item>
+        <item name="android:windowContentOverlay">@null</item>
+        <item name="windowActionBarOverlay">true</item>
+    </style>
+
     <!--
         App styles
     -->

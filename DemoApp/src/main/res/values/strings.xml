@@ -6,6 +6,7 @@
     <string name="title_unlock">Hold to unlock</string>
     <string name="title_simple_nav">Simple NavDrawer</string>
     <string name="title_double_nav">Double NavDrawer</string>
+    <string name="title_fading_action_bar">Fading Action Bar</string>
 
     <string name="title_section_left_1">Section Left 1</string>
     <string name="title_section_left_2">Section Left 2</string>

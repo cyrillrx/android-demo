@@ -8,3 +8,6 @@ include ':KitkatTv'
 
 include ':Core'
 project(':Core').projectDir = new File('libraries/android_libraries/Core')
+
+include ':Component'
+project(':Component').projectDir = new File('libraries/android_libraries/Component')
