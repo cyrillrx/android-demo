@@ -1,8 +1,6 @@
 package com.cyrilleroux.android.drawer;
 
-import android.content.SharedPreferences;
 import android.os.Bundle;
-import android.preference.PreferenceManager;
 import android.support.v4.widget.DrawerLayout;
 import android.view.Gravity;
 import android.view.LayoutInflater;
@@ -12,47 +10,11 @@ import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
 import android.widget.ListView;
 
-import com.cyrilleroux.android.demo.R;
+import com.cyrilleroux.android.R;
 
 public class RightDrawerFragment extends AbstractNavigationDrawerFragment {
 
     private static final String PREF_USER_LEARNED_DRAWER = "right_navigation_drawer_learned";
-
-    /**
-     * Helper component that ties the action bar to the navigation drawer.
-     */
-    private DrawerLayout.DrawerListener mDrawerListener = new DrawerLayout.DrawerListener() {
-        @Override
-        public void onDrawerSlide(View drawerView, float slideOffset) { }
-
-        @Override
-        public void onDrawerOpened(View drawerView) {
-            if (!isAdded()) {
-                return;
-            }
-            if (!mUserLearnedDrawer) {
-                // The user manually opened the drawer; store this flag to prevent auto-showing
-                // the navigation drawer automatically in the future.
-                mUserLearnedDrawer = true;
-                SharedPreferences sp = PreferenceManager
-                        .getDefaultSharedPreferences(getActivity());
-                sp.edit().putBoolean(PREF_USER_LEARNED_DRAWER, true).apply();
-            }
-
-            getActivity().invalidateOptionsMenu(); // calls onPrepareOptionsMenu()
-        }
-
-        @Override
-        public void onDrawerClosed(View drawerView) {
-            if (!isAdded()) {
-                return;
-            }
-            getActivity().invalidateOptionsMenu(); // calls onPrepareOptionsMenu()
-        }
-
-        @Override
-        public void onDrawerStateChanged(int newState) { }
-    };
 
     public RightDrawerFragment() { }
 

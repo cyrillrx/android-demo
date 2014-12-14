@@ -11,3 +11,9 @@ project(':Core').projectDir = new File('libraries/android_libraries/Core')
 
 include ':Component'
 project(':Component').projectDir = new File('libraries/android_libraries/Component')
+
+include ':Network'
+project(':Network').projectDir = new File('libraries/android_libraries/Network')
+
+include ':volley'
+project(':volley').projectDir = new File('libraries/android_libraries/libraries/volley')

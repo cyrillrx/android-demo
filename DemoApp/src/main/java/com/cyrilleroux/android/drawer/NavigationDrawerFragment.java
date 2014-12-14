@@ -17,7 +17,7 @@ import android.widget.ArrayAdapter;
 import android.widget.ListView;
 import android.widget.Toast;
 
-import com.cyrilleroux.android.demo.R;
+import com.cyrilleroux.android.R;
 
 /**
  * Fragment used for managing interactions for and presentation of a navigation drawer.

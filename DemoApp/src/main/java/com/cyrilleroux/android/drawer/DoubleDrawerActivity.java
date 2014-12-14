@@ -13,7 +13,7 @@ import android.view.MenuItem;
 import android.view.View;
 import android.view.ViewGroup;
 
-import com.cyrilleroux.android.demo.R;
+import com.cyrilleroux.android.R;
 
 public class DoubleDrawerActivity extends ActionBarActivity
         implements AbstractNavigationDrawerFragment.NavigationDrawerCallbacks {
@@ -71,7 +71,6 @@ public class DoubleDrawerActivity extends ActionBarActivity
         if (actionBar == null) {
             return;
         }
-        actionBar.setNavigationMode(ActionBar.NAVIGATION_MODE_STANDARD);
         actionBar.setDisplayShowTitleEnabled(true);
         actionBar.setTitle(mTitle);
     }

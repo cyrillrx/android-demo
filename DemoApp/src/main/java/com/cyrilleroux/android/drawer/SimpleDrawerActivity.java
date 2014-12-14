@@ -14,7 +14,7 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.TextView;
 
-import com.cyrilleroux.android.demo.R;
+import com.cyrilleroux.android.R;
 
 public class SimpleDrawerActivity extends ActionBarActivity
         implements NavigationDrawerFragment.NavigationDrawerCallbacks {
@@ -70,7 +70,6 @@ public class SimpleDrawerActivity extends ActionBarActivity
         if (actionBar == null) {
             return;
         }
-        actionBar.setNavigationMode(ActionBar.NAVIGATION_MODE_STANDARD);
         actionBar.setDisplayShowTitleEnabled(true);
         actionBar.setTitle(mTitle);
     }

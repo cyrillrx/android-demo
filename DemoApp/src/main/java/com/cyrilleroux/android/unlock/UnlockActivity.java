@@ -7,9 +7,9 @@ import android.view.View;
 import android.widget.ProgressBar;
 import android.widget.Toast;
 
+import com.cyrilleroux.android.R;
 import com.cyrilleroux.android.core.toolbox.CompletionListener;
 import com.cyrilleroux.android.core.toolbox.CountDownTimer;
-import com.cyrilleroux.android.demo.R;
 
 /**
  * Created on 02/10/2014.

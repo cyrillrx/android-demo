@@ -16,7 +16,7 @@ import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
 import android.widget.ListView;
 
-import com.cyrilleroux.android.demo.R;
+import com.cyrilleroux.android.R;
 
 public class LeftDrawerFragment extends AbstractNavigationDrawerFragment {
 

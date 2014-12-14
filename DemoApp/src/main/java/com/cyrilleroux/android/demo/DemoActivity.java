@@ -6,7 +6,10 @@ import android.os.Bundle;
 import android.view.View;
 import android.widget.AdapterView;
 
+import com.cyrilleroux.android.R;
 import com.cyrilleroux.android.actionbar.FadingActionBarActivity;
+import com.cyrilleroux.android.cards.CardListActivity;
+import com.cyrilleroux.android.cards.HorizontalCardListActivity;
 import com.cyrilleroux.android.drawer.DoubleDrawerActivity;
 import com.cyrilleroux.android.drawer.SimpleDrawerActivity;
 import com.cyrilleroux.android.unlock.UnlockActivity;
@@ -28,6 +31,9 @@ public class DemoActivity extends ListActivity implements AdapterView.OnItemClic
         samples.add(new Sample("Simple Nav Drawer", "Simple Nav Drawer activity.", SimpleDrawerActivity.class));
         samples.add(new Sample("Double Nav Drawer", "Double Nav Drawer activity.", DoubleDrawerActivity.class));
         samples.add(new Sample("Fading Action Bar", "Fading action bar on scroll.", FadingActionBarActivity.class));
+        samples.add(new Sample("Vertical Card list", "A vertical card list using RecycleView and CardView.", CardListActivity.class));
+        samples.add(new Sample("Horizontal Card list", "A horizontal card list using RecycleView and CardView.", HorizontalCardListActivity.class));
+
         mAdapter = new SampleAdapter(getApplicationContext(), samples);
 
         setListAdapter(mAdapter);

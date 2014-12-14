@@ -15,7 +15,7 @@ import android.view.MenuItem;
 import android.view.View;
 import android.widget.ListView;
 
-import com.cyrilleroux.android.demo.R;
+import com.cyrilleroux.android.R;
 
 /**
  * Fragment used for managing interactions for and presentation of a navigation drawer.
@@ -141,7 +141,6 @@ public abstract class AbstractNavigationDrawerFragment extends Fragment {
     protected void showGlobalContextActionBar() {
         ActionBar actionBar = getActionBar();
         actionBar.setDisplayShowTitleEnabled(true);
-        actionBar.setNavigationMode(ActionBar.NAVIGATION_MODE_STANDARD);
         actionBar.setTitle(R.string.app_name);
     }
 

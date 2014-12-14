@@ -21,4 +21,34 @@
         <item name="android:padding">@dimen/medium_margin</item>
     </style>
 
+    <style name="text_card_title">
+        <item name="android:textSize">@dimen/text_card_title</item>
+        <item name="android:fontFamily">sans-serif-condensed</item>
+    </style>
+
+    <style name="text_card_subtext">
+        <item name="android:textSize">@dimen/text_card_subtext</item>
+        <item name="android:fontFamily">sans-serif-condensed</item>
+    </style>
+
+    <style name="text_browse_screen_title">
+        <item name="android:textSize">@dimen/text_browse_screen_title</item>
+        <item name="android:fontFamily">sans-serif</item>
+    </style>
+
+    <style name="text_browse_category_title">
+        <item name="android:textSize">@dimen/text_browse_category_title</item>
+        <item name="android:fontFamily">sans-serif-condensed</item>
+    </style>
+
+    <style name="text_detail_content_title">
+        <item name="android:textSize">@dimen/text_detail_content_title</item>
+        <item name="android:fontFamily">sans-serif</item>
+    </style>
+
+    <style name="text_detail_subtext">
+        <item name="android:textSize">@dimen/text_detail_subtext</item>
+        <item name="android:fontFamily">sans-serif</item>
+    </style>
+
 </resources>

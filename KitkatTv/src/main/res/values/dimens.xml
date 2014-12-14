@@ -4,4 +4,11 @@
     <dimen name="common_margin">16dp</dimen>
     <dimen name="medium_margin">8dp</dimen>
 
+    <dimen name="text_card_title">16sp</dimen>
+    <dimen name="text_card_subtext">12sp</dimen>
+    <dimen name="text_browse_screen_title">44sp</dimen>
+    <dimen name="text_browse_category_title">20sp</dimen>
+    <dimen name="text_detail_content_title">34sp</dimen>
+    <dimen name="text_detail_subtext">14sp</dimen>
+
 </resources>

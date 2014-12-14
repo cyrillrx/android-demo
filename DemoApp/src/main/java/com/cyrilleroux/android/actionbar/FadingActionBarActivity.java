@@ -5,9 +5,9 @@ import android.os.Bundle;
 import android.support.v7.app.ActionBarActivity;
 import android.widget.ScrollView;
 
+import com.cyrilleroux.android.R;
 import com.cyrilleroux.android.component.scroll.ObservableScrollView;
 import com.cyrilleroux.android.component.scroll.ScrollViewListener;
-import com.cyrilleroux.android.demo.R;
 
 /**
  * @author Cyril Leroux
