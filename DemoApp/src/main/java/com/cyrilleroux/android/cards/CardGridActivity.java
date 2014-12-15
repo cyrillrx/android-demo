@@ -2,7 +2,7 @@ package com.cyrilleroux.android.cards;
 
 import android.os.Bundle;
 import android.support.v7.app.ActionBarActivity;
-import android.support.v7.widget.LinearLayoutManager;
+import android.support.v7.widget.GridLayoutManager;
 import android.support.v7.widget.RecyclerView;
 
 import com.cyrilleroux.android.R;
@@ -11,11 +11,11 @@ import com.cyrilleroux.android.R;
  * @author Cyril Leroux
  *         Created 11/12/2014.
  */
-public class HorizontalCardListActivity extends ActionBarActivity {
+public class CardGridActivity extends ActionBarActivity {
 
     private RecyclerView mRecyclerView;
     private RecyclerView.Adapter mAdapter;
-    private LinearLayoutManager mLayoutManager;
+    private GridLayoutManager mLayoutManager;
 
     private String[] mDataSet = new String[]{
             "TOTO", "TATA", "TUTU",
@@ -29,7 +29,7 @@ public class HorizontalCardListActivity extends ActionBarActivity {
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_card_list_h);
+        setContentView(R.layout.activity_card_list_v);
 
         mRecyclerView = (RecyclerView) findViewById(R.id.my_recycler_view);
 
@@ -38,12 +38,11 @@ public class HorizontalCardListActivity extends ActionBarActivity {
         mRecyclerView.setHasFixedSize(true);
 
         // use a linear layout manager
-        mLayoutManager = new LinearLayoutManager(this);
-        mLayoutManager.setOrientation(LinearLayoutManager.HORIZONTAL);
+        mLayoutManager = new GridLayoutManager(this, 3);
         mRecyclerView.setLayoutManager(mLayoutManager);
 
         // specify an adapter (see also next example)
-        mAdapter = new CardAdapter(mDataSet, CardAdapter.ScrollType.HORIZONTAL);
+        mAdapter = new CardAdapter(mDataSet, CardAdapter.ScrollType.GRID);
         mRecyclerView.setAdapter(mAdapter);
     }
 }

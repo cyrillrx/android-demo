@@ -9,6 +9,8 @@
     <string name="title_fading_action_bar">Fading Action Bar</string>
     <string name="title_vertical_card_list">Vertical card list</string>
     <string name="title_horizontal_card_list">Horizontal card list</string>
+    <string name="title_vertical_card_grid">Vertical card grid</string>
+    <string name="title_horizontal_card_grid">Horizontal card grid</string>
 
     <string name="title_section_left_1">Section Left 1</string>
     <string name="title_section_left_2">Section Left 2</string>

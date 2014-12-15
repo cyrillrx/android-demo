@@ -8,7 +8,9 @@ import android.widget.AdapterView;
 
 import com.cyrilleroux.android.R;
 import com.cyrilleroux.android.actionbar.FadingActionBarActivity;
+import com.cyrilleroux.android.cards.CardGridActivity;
 import com.cyrilleroux.android.cards.CardListActivity;
+import com.cyrilleroux.android.cards.HorizontalCardGridActivity;
 import com.cyrilleroux.android.cards.HorizontalCardListActivity;
 import com.cyrilleroux.android.drawer.DoubleDrawerActivity;
 import com.cyrilleroux.android.drawer.SimpleDrawerActivity;
@@ -31,8 +33,10 @@ public class DemoActivity extends ListActivity implements AdapterView.OnItemClic
         samples.add(new Sample("Simple Nav Drawer", "Simple Nav Drawer activity.", SimpleDrawerActivity.class));
         samples.add(new Sample("Double Nav Drawer", "Double Nav Drawer activity.", DoubleDrawerActivity.class));
         samples.add(new Sample("Fading Action Bar", "Fading action bar on scroll.", FadingActionBarActivity.class));
-        samples.add(new Sample("Vertical Card list", "A vertical card list using RecycleView and CardView.", CardListActivity.class));
-        samples.add(new Sample("Horizontal Card list", "A horizontal card list using RecycleView and CardView.", HorizontalCardListActivity.class));
+        samples.add(new Sample("Vertical List", "A vertical card list using RecycleView and CardView.", CardListActivity.class));
+        samples.add(new Sample("Horizontal List", "A horizontal card list using RecycleView and CardView.", HorizontalCardListActivity.class));
+        samples.add(new Sample("Vertical Grid", "A vertical card grid using RecycleView and CardView.", CardGridActivity.class));
+        samples.add(new Sample("Horizontal Grid", "A horizontal card grid using RecycleView and CardView.", HorizontalCardGridActivity.class));
 
         mAdapter = new SampleAdapter(getApplicationContext(), samples);
 

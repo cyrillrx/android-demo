@@ -2,6 +2,7 @@ package com.cyrilleroux.android.cards;
 
 import android.os.Bundle;
 import android.support.v7.app.ActionBarActivity;
+import android.support.v7.widget.GridLayoutManager;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
 
@@ -11,11 +12,11 @@ import com.cyrilleroux.android.R;
  * @author Cyril Leroux
  *         Created 11/12/2014.
  */
-public class HorizontalCardListActivity extends ActionBarActivity {
+public class HorizontalCardGridActivity extends ActionBarActivity {
 
     private RecyclerView mRecyclerView;
     private RecyclerView.Adapter mAdapter;
-    private LinearLayoutManager mLayoutManager;
+    private GridLayoutManager mLayoutManager;
 
     private String[] mDataSet = new String[]{
             "TOTO", "TATA", "TUTU",
@@ -38,12 +39,12 @@ public class HorizontalCardListActivity extends ActionBarActivity {
         mRecyclerView.setHasFixedSize(true);
 
         // use a linear layout manager
-        mLayoutManager = new LinearLayoutManager(this);
+        mLayoutManager = new GridLayoutManager(this, 3);
         mLayoutManager.setOrientation(LinearLayoutManager.HORIZONTAL);
         mRecyclerView.setLayoutManager(mLayoutManager);
 
         // specify an adapter (see also next example)
-        mAdapter = new CardAdapter(mDataSet, CardAdapter.ScrollType.HORIZONTAL);
+        mAdapter = new CardAdapter(mDataSet, CardAdapter.ScrollType.GRID);
         mRecyclerView.setAdapter(mAdapter);
     }
 }

@@ -15,8 +15,10 @@ import com.cyrilleroux.android.R;
  */
 public class CardAdapter extends RecyclerView.Adapter<CardAdapter.ViewHolder> {
 
+    public static enum ScrollType {HORIZONTAL, VERTICAL, GRID}
+
     private String[] mDataSet;
-    private boolean mVertical;
+    private ScrollType mScrollType;
 
 
     public static class ViewHolder extends RecyclerView.ViewHolder {
@@ -29,23 +31,37 @@ public class CardAdapter extends RecyclerView.Adapter<CardAdapter.ViewHolder> {
         }
     }
 
-    // Provide a suitable constructor (depends on the kind of dataset)
-    public CardAdapter(String[] dataSet, boolean vertical) {
+    // Provide a suitable constructor (depends on the kind of dataSet)
+    public CardAdapter(String[] dataSet, ScrollType scrollType) {
         mDataSet = dataSet;
-        mVertical = vertical;
+        mScrollType = scrollType;
     }
 
     public CardAdapter(String[] dataSet) {
-        this(dataSet, true);
+        this(dataSet, ScrollType.VERTICAL);
     }
 
     // Create new views (invoked by the layout manager)
     @Override
     public ViewHolder onCreateViewHolder(ViewGroup parent, int viewType) {
-        int res = mVertical ? R.layout.card_item_v : R.layout.card_item_h;
-        View v = LayoutInflater.from(parent.getContext()).inflate(res, parent, false);
+        View v = LayoutInflater.from(parent.getContext()).inflate(getItemRes(), parent, false);
         //TODO Set the view's size, margins, paddings and layout parameters here
         return new ViewHolder((CardView) v);
+    }
+
+    private int getItemRes() {
+        switch (mScrollType) {
+
+            case HORIZONTAL:
+                return R.layout.card_item_h;
+
+            case VERTICAL:
+                return R.layout.card_item_v;
+
+            // Grid
+            default:
+                return R.layout.card_item;
+        }
     }
 
     // Replace the contents of a view (invoked by the layout manager)
