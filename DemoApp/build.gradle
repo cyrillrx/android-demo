@@ -32,6 +32,4 @@ dependencies {
 
     // Git sub modules
     compile project(':Core')
-    compile project(':Component')
-    compile project(':Network')
 }

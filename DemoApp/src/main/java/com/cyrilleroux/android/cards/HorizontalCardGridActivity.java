@@ -38,7 +38,7 @@ public class HorizontalCardGridActivity extends ActionBarActivity {
         // in content do not change the layout size of the RecyclerView
         mRecyclerView.setHasFixedSize(true);
 
-        // use a linear layout manager
+        // Use a grid manager
         mLayoutManager = new GridLayoutManager(this, 3);
         mLayoutManager.setOrientation(LinearLayoutManager.HORIZONTAL);
         mRecyclerView.setLayoutManager(mLayoutManager);
