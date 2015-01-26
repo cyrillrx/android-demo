@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
 
-    <string name="app_name">Cyril\'s Demo</string>
+    <string name="app_name">LRX lib Demo</string>
 
     <string name="title_unlock">Hold to unlock</string>
     <string name="title_simple_nav">Simple NavDrawer</string>

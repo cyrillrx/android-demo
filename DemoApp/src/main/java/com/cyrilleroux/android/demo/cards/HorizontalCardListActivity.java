@@ -1,21 +1,21 @@
-package com.cyrilleroux.android.cards;
+package com.cyrilleroux.android.demo.cards;
 
 import android.os.Bundle;
 import android.support.v7.app.ActionBarActivity;
-import android.support.v7.widget.GridLayoutManager;
+import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
 
-import com.cyrilleroux.android.R;
+import com.cyrilleroux.android.demo.R;
 
 /**
  * @author Cyril Leroux
  *         Created 11/12/2014.
  */
-public class CardGridActivity extends ActionBarActivity {
+public class HorizontalCardListActivity extends ActionBarActivity {
 
     private RecyclerView mRecyclerView;
     private RecyclerView.Adapter mAdapter;
-    private GridLayoutManager mLayoutManager;
+    private LinearLayoutManager mLayoutManager;
 
     private String[] mDataSet = new String[]{
             "TOTO", "TATA", "TUTU",
@@ -29,7 +29,7 @@ public class CardGridActivity extends ActionBarActivity {
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_card_list_v);
+        setContentView(R.layout.activity_card_list_h);
 
         mRecyclerView = (RecyclerView) findViewById(R.id.my_recycler_view);
 
@@ -37,12 +37,13 @@ public class CardGridActivity extends ActionBarActivity {
         // in content do not change the layout size of the RecyclerView
         mRecyclerView.setHasFixedSize(true);
 
-        // Use a grid manager
-        mLayoutManager = new GridLayoutManager(this, 3);
+        // use a linear layout manager
+        mLayoutManager = new LinearLayoutManager(this);
+        mLayoutManager.setOrientation(LinearLayoutManager.HORIZONTAL);
         mRecyclerView.setLayoutManager(mLayoutManager);
 
-        // specify an adapter (see also next example)
-        mAdapter = new CardAdapter(mDataSet, CardAdapter.ScrollType.GRID);
+        // specify an adapter
+        mAdapter = new CardAdapter(mDataSet, CardAdapter.ScrollType.HORIZONTAL);
         mRecyclerView.setAdapter(mAdapter);
     }
 }

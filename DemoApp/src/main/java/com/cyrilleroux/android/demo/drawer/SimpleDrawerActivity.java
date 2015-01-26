@@ -1,4 +1,4 @@
-package com.cyrilleroux.android.drawer;
+package com.cyrilleroux.android.demo.drawer;
 
 import android.app.Activity;
 import android.app.Fragment;
@@ -14,7 +14,7 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.TextView;
 
-import com.cyrilleroux.android.R;
+import com.cyrilleroux.android.demo.R;
 
 public class SimpleDrawerActivity extends ActionBarActivity
         implements NavigationDrawerFragment.NavigationDrawerCallbacks {

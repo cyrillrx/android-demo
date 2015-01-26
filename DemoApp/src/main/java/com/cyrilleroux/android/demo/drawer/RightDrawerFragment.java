@@ -1,4 +1,4 @@
-package com.cyrilleroux.android.drawer;
+package com.cyrilleroux.android.demo.drawer;
 
 import android.os.Bundle;
 import android.support.v4.widget.DrawerLayout;
@@ -10,18 +10,11 @@ import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
 import android.widget.ListView;
 
-import com.cyrilleroux.android.R;
+import com.cyrilleroux.android.demo.R;
 
 public class RightDrawerFragment extends AbstractNavigationDrawerFragment {
 
-    private static final String PREF_USER_LEARNED_DRAWER = "right_navigation_drawer_learned";
-
     public RightDrawerFragment() { }
-
-    @Override
-    protected String getUserLearnDrawerKey() {
-        return PREF_USER_LEARNED_DRAWER;
-    }
 
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
@@ -33,7 +26,7 @@ public class RightDrawerFragment extends AbstractNavigationDrawerFragment {
             }
         });
         mDrawerListView.setAdapter(new ArrayAdapter<>(
-                getActionBar().getThemedContext(),
+                getActivity(),
                 android.R.layout.simple_list_item_activated_1,
                 android.R.id.text1,
                 new String[]{
@@ -58,17 +51,6 @@ public class RightDrawerFragment extends AbstractNavigationDrawerFragment {
         // set a custom shadow that overlays the main content when the drawer opens
         mDrawerLayout.setDrawerShadow(R.drawable.drawer_shadow_right, Gravity.END);
         // set up the drawer's list view with items and click listener
-
-//        ActionBar actionBar = getActionBar();
-//        actionBar.setDisplayHomeAsUpEnabled(true);
-//        actionBar.setHomeButtonEnabled(true);
-
-        // If the user hasn't 'learned' about the drawer, open it to introduce them to the drawer,
-        // per the navigation drawer design guidelines.
-        if (!mUserLearnedDrawer && !mFromSavedInstanceState) {
-            mDrawerLayout.openDrawer(mFragmentContainerView);
-        }
-//        mDrawerLayout.setDrawerListener(mDrawerListener);
     }
 
     @Override
@@ -81,7 +63,7 @@ public class RightDrawerFragment extends AbstractNavigationDrawerFragment {
             mDrawerLayout.closeDrawer(mFragmentContainerView);
         }
         if (mCallbacks != null) {
-            mCallbacks.onNavigationDrawerItemSelected(position);
+            mCallbacks.onNavigationDrawerItemSelected(position + 200);
         }
     }
 }

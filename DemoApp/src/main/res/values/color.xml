@@ -2,11 +2,11 @@
 <resources>
 
     <!--   your app branding color for the app bar -->
-    <color name="primary">#ff74d336</color>
+    <color name="primary">#ff01bbd3</color>
     <!--   darker variant for the status bar and contextual app bars -->
-    <color name="primary_dark">#ff57ab35</color>
+    <color name="primary_dark">#ff0196a6</color>
     <!--   theme UI controls like checkboxes and text fields -->
-    <color name="accent">#ff31ace0</color>
+    <color name="accent">#ffd61c61</color>
 
     <color name="unlock_primary">#ff01bbd3</color>
     <color name="unlock_primary_dark">#ff0196a6</color>
@@ -14,13 +14,11 @@
 
     <color name="nav_primary">#ff01bbd3</color>
     <color name="nav_primary_dark">#ff0196a6</color>
-    <color name="nav_accent">#ffd61c61</color>
 
     <color name="nav_list_bg">#ffd2d2d2</color>
     <color name="nav_selected_item">#ffb4b4b4</color>
 
     <color name="double_nav_primary">#ff74d336</color>
     <color name="double_nav_primary_dark">#ff57ab35</color>
-    <color name="double_nav_accent">#ff31ace0</color>
 
 </resources>

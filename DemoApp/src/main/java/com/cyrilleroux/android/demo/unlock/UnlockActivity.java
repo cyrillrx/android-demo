@@ -1,4 +1,4 @@
-package com.cyrilleroux.android.unlock;
+package com.cyrilleroux.android.demo.unlock;
 
 import android.os.Bundle;
 import android.support.v7.app.ActionBarActivity;
@@ -7,9 +7,9 @@ import android.view.View;
 import android.widget.ProgressBar;
 import android.widget.Toast;
 
-import com.cyrilleroux.android.R;
-import com.cyrilleroux.android.core.toolbox.CompletionListener;
-import com.cyrilleroux.android.core.toolbox.CountDownTimer;
+import com.cyrilleroux.android.demo.R;
+import com.cyrilleroux.android.toolbox.CompletionListener;
+import com.cyrilleroux.android.toolbox.CountDownTimer;
 
 /**
  * Created on 02/10/2014.

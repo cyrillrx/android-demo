@@ -1,4 +1,4 @@
-package com.cyrilleroux.android.cards;
+package com.cyrilleroux.android.demo.cards;
 
 import android.support.v7.widget.CardView;
 import android.support.v7.widget.RecyclerView;
@@ -7,7 +7,7 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.TextView;
 
-import com.cyrilleroux.android.R;
+import com.cyrilleroux.android.demo.R;
 
 /**
  * @author Cyril Leroux
@@ -70,7 +70,6 @@ public class CardAdapter extends RecyclerView.Adapter<CardAdapter.ViewHolder> {
         // - get element from your dataset at this position
         // - replace the contents of the view with that element
         ((TextView) viewHolder.mCardView.findViewById(R.id.info_text)).setText(mDataSet[position]);
-
     }
 
     @Override

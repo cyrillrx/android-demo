@@ -1,21 +1,20 @@
 <?xml version="1.0" encoding="utf-8"?>
 
 <manifest
-    package="com.cyrilleroux.android"
+    package="com.cyrilleroux.android.demo"
     xmlns:android="http://schemas.android.com/apk/res/android">
 
     <application
         android:allowBackup="true"
-        android:icon="@drawable/ic_launcher"
+        android:icon="@mipmap/ic_launcher"
         android:label="@string/app_name"
-        android:theme="@style/AppTheme">
+        android:theme="@style/UnlockTheme">
 
         <activity
-            android:name=".demo.DemoActivity"
+            android:name=".DemoActivity"
             android:label="@string/app_name">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
-
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
@@ -27,8 +26,7 @@
 
         <activity
             android:name=".drawer.SimpleDrawerActivity"
-            android:label="@string/title_simple_nav"
-            android:theme="@style/SimpleNavTheme" />
+            android:label="@string/title_simple_nav" />
 
         <activity
             android:name=".drawer.DoubleDrawerActivity"
@@ -42,23 +40,19 @@
 
         <activity
             android:name=".cards.CardListActivity"
-            android:label="@string/title_vertical_card_list"
-            android:theme="@style/SimpleNavTheme" />
+            android:label="@string/title_vertical_card_list" />
 
         <activity
             android:name=".cards.HorizontalCardListActivity"
-            android:label="@string/title_horizontal_card_list"
-            android:theme="@style/SimpleNavTheme" />
+            android:label="@string/title_horizontal_card_list" />
 
         <activity
             android:name=".cards.CardGridActivity"
-            android:label="@string/title_vertical_card_grid"
-            android:theme="@style/SimpleNavTheme" />
+            android:label="@string/title_vertical_card_grid" />
 
         <activity
             android:name=".cards.HorizontalCardGridActivity"
-            android:label="@string/title_horizontal_card_grid"
-            android:theme="@style/SimpleNavTheme" />
+            android:label="@string/title_horizontal_card_grid" />
 
     </application>
 

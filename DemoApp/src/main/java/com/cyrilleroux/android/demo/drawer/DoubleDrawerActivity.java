@@ -1,4 +1,4 @@
-package com.cyrilleroux.android.drawer;
+package com.cyrilleroux.android.demo.drawer;
 
 import android.app.Activity;
 import android.app.Fragment;
@@ -7,13 +7,14 @@ import android.os.Bundle;
 import android.support.v4.widget.DrawerLayout;
 import android.support.v7.app.ActionBar;
 import android.support.v7.app.ActionBarActivity;
+import android.support.v7.widget.Toolbar;
 import android.view.LayoutInflater;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
 import android.view.ViewGroup;
 
-import com.cyrilleroux.android.R;
+import com.cyrilleroux.android.demo.R;
 
 public class DoubleDrawerActivity extends ActionBarActivity
         implements AbstractNavigationDrawerFragment.NavigationDrawerCallbacks {
@@ -33,6 +34,9 @@ public class DoubleDrawerActivity extends ActionBarActivity
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_double_nav);
+
+        final Toolbar toolbar = (Toolbar) findViewById(R.id.custom_toolbar);
+        setSupportActionBar(toolbar);
 
         mTitle = getTitle();
         mLeftDrawerFragment = (LeftDrawerFragment) getFragmentManager().findFragmentById(R.id.main_navigation_drawer);
@@ -54,14 +58,24 @@ public class DoubleDrawerActivity extends ActionBarActivity
 
     public void onSectionAttached(int number) {
         switch (number) {
-            case 1:
+            case 101:
                 mTitle = getString(R.string.title_section_left_1);
                 break;
-            case 2:
+            case 102:
                 mTitle = getString(R.string.title_section_left_2);
                 break;
-            case 3:
+            case 103:
                 mTitle = getString(R.string.title_section_left_3);
+                break;
+
+            case 201:
+                mTitle = getString(R.string.title_section_right_1);
+                break;
+            case 202:
+                mTitle = getString(R.string.title_section_right_2);
+                break;
+            case 203:
+                mTitle = getString(R.string.title_section_right_3);
                 break;
         }
     }

@@ -1,27 +1,23 @@
 package com.cyrilleroux.android.demo;
 
-import android.app.ListActivity;
-import android.content.Intent;
 import android.os.Bundle;
-import android.view.View;
-import android.widget.AdapterView;
+import android.support.v7.app.ActionBarActivity;
+import android.support.v7.widget.LinearLayoutManager;
+import android.support.v7.widget.RecyclerView;
 
-import com.cyrilleroux.android.R;
-import com.cyrilleroux.android.actionbar.FadingActionBarActivity;
-import com.cyrilleroux.android.cards.CardGridActivity;
-import com.cyrilleroux.android.cards.CardListActivity;
-import com.cyrilleroux.android.cards.HorizontalCardGridActivity;
-import com.cyrilleroux.android.cards.HorizontalCardListActivity;
-import com.cyrilleroux.android.drawer.DoubleDrawerActivity;
-import com.cyrilleroux.android.drawer.SimpleDrawerActivity;
-import com.cyrilleroux.android.unlock.UnlockActivity;
+import com.cyrilleroux.android.demo.actionbar.FadingActionBarActivity;
+import com.cyrilleroux.android.demo.cards.CardGridActivity;
+import com.cyrilleroux.android.demo.cards.CardListActivity;
+import com.cyrilleroux.android.demo.cards.HorizontalCardGridActivity;
+import com.cyrilleroux.android.demo.cards.HorizontalCardListActivity;
+import com.cyrilleroux.android.demo.drawer.DoubleDrawerActivity;
+import com.cyrilleroux.android.demo.drawer.SimpleDrawerActivity;
+import com.cyrilleroux.android.demo.unlock.UnlockActivity;
 
 import java.util.ArrayList;
 import java.util.List;
 
-public class DemoActivity extends ListActivity implements AdapterView.OnItemClickListener {
-
-    private SampleAdapter mAdapter;
+public class DemoActivity extends ActionBarActivity {
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -38,37 +34,12 @@ public class DemoActivity extends ListActivity implements AdapterView.OnItemClic
         samples.add(new Sample("Vertical Grid", "A vertical card grid using RecycleView and CardView.", CardGridActivity.class));
         samples.add(new Sample("Horizontal Grid", "A horizontal card grid using RecycleView and CardView.", HorizontalCardGridActivity.class));
 
-        mAdapter = new SampleAdapter(getApplicationContext(), samples);
-
-        setListAdapter(mAdapter);
-        getListView().setOnItemClickListener(this);
+        RecyclerView recyclerView = (RecyclerView) findViewById(android.R.id.list);
+        // use this setting to improve performance if you know that changes
+        // in content do not change the layout size of the RecyclerView
+        recyclerView.setHasFixedSize(true);
+        // use a linear layout manager
+        recyclerView.setLayoutManager(new LinearLayoutManager(this));
+        recyclerView.setAdapter(new SampleAdapter(this, samples));
     }
-
-    @Override
-    public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
-        Sample sample = mAdapter.getItem(position);
-        startActivity(new Intent(getApplicationContext(), sample.getClazz()));
-    }
-
-//    @Override
-//    public boolean onCreateOptionsMenu(Menu menu) {
-//        // Inflate the menu; this adds items to the action bar if it is present.
-//        getMenuInflater().inflate(com.cyrilleroux.sampleapp.R.menu.main, menu);
-//        return true;
-//    }
-
-//    @Override
-//    public boolean onOptionsItemSelected(MenuItem item) {
-//        // Handle action bar item clicks here. The action bar will
-//        // automatically handle clicks on the Home/Up button, so long
-//        // as you specify a parent activity in AndroidManifest.xml.
-//        int id = item.getItemId();
-//
-//        //noinspection SimplifiableIfStatement
-//        if (id == com.cyrilleroux.sampleapp.R.id.action_settings) {
-//            return true;
-//        }
-//
-//        return super.onOptionsItemSelected(item);
-//    }
 }

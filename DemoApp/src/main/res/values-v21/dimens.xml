@@ -1,0 +1,6 @@
+<resources>
+
+    <!-- ActionBar top margin when status bar is overlayed (API 21+)-->
+    <dimen name="status_bar_height">25dp</dimen>
+
+</resources>

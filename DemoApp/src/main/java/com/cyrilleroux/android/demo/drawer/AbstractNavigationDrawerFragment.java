@@ -1,10 +1,8 @@
-package com.cyrilleroux.android.drawer;
+package com.cyrilleroux.android.demo.drawer;
 
 import android.app.Activity;
 import android.app.Fragment;
-import android.content.SharedPreferences;
 import android.os.Bundle;
-import android.preference.PreferenceManager;
 import android.support.v4.widget.DrawerLayout;
 import android.support.v7.app.ActionBar;
 import android.support.v7.app.ActionBarActivity;
@@ -15,7 +13,7 @@ import android.view.MenuItem;
 import android.view.View;
 import android.widget.ListView;
 
-import com.cyrilleroux.android.R;
+import com.cyrilleroux.android.demo.R;
 
 /**
  * Fragment used for managing interactions for and presentation of a navigation drawer.
@@ -38,8 +36,6 @@ public abstract class AbstractNavigationDrawerFragment extends Fragment {
     protected ListView mDrawerListView;
     protected View mFragmentContainerView;
 
-    protected boolean mUserLearnedDrawer;
-
     protected int mCurrentSelectedPosition = 0;
     protected boolean mFromSavedInstanceState;
 
@@ -48,11 +44,6 @@ public abstract class AbstractNavigationDrawerFragment extends Fragment {
     @Override
     public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-
-        // Read in the flag indicating whether or not the user has demonstrated awareness of the
-        // drawer. See PREF_USER_LEARNED_DRAWER for details.
-        SharedPreferences sp = PreferenceManager.getDefaultSharedPreferences(getActivity());
-        mUserLearnedDrawer = sp.getBoolean(getUserLearnDrawerKey(), false);
 
         if (savedInstanceState != null) {
             mCurrentSelectedPosition = savedInstanceState.getInt(STATE_SELECTED_POSITION);
@@ -122,12 +113,6 @@ public abstract class AbstractNavigationDrawerFragment extends Fragment {
         return super.onOptionsItemSelected(item);
     }
 
-    /**
-     * Per the design guidelines, you should show the drawer on launch until the user manually
-     * expands it. This shared preference tracks this.
-     */
-    protected abstract String getUserLearnDrawerKey();
-
     public boolean isDrawerOpen() {
         return mDrawerLayout != null && mDrawerLayout.isDrawerOpen(mFragmentContainerView);
     }
@@ -157,6 +142,7 @@ public abstract class AbstractNavigationDrawerFragment extends Fragment {
      * Callbacks interface that all activities using this fragment must implement.
      */
     public static interface NavigationDrawerCallbacks {
+
         /**
          * Called when an item in the navigation drawer is selected.
          */
