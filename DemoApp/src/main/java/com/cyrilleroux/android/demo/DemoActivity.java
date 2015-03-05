@@ -12,6 +12,7 @@ import com.cyrilleroux.android.demo.cards.HorizontalCardGridActivity;
 import com.cyrilleroux.android.demo.cards.HorizontalCardListActivity;
 import com.cyrilleroux.android.demo.drawer.DoubleDrawerActivity;
 import com.cyrilleroux.android.demo.drawer.SimpleDrawerActivity;
+import com.cyrilleroux.android.demo.notification.NotificationActivity;
 import com.cyrilleroux.android.demo.unlock.UnlockActivity;
 
 import java.util.ArrayList;
@@ -33,6 +34,7 @@ public class DemoActivity extends ActionBarActivity {
         samples.add(new Sample("Horizontal List", "A horizontal card list using RecycleView and CardView.", HorizontalCardListActivity.class));
         samples.add(new Sample("Vertical Grid", "A vertical card grid using RecycleView and CardView.", CardGridActivity.class));
         samples.add(new Sample("Horizontal Grid", "A horizontal card grid using RecycleView and CardView.", HorizontalCardGridActivity.class));
+        samples.add(new Sample("Notification", "Display a simple notification.", NotificationActivity.class));
 
         RecyclerView recyclerView = (RecyclerView) findViewById(android.R.id.list);
         // use this setting to improve performance if you know that changes

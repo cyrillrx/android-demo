@@ -54,6 +54,10 @@
             android:name=".cards.HorizontalCardGridActivity"
             android:label="@string/title_horizontal_card_grid" />
 
+        <activity
+            android:name=".notification.NotificationActivity"
+            android:label="@string/title_notification" />
+
     </application>
 
 </manifest>
