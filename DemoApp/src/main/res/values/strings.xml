@@ -27,4 +27,15 @@
     <string name="action_example">Example action</string>
     <string name="action_settings">Settings</string>
 
+    <string name="btn_simple_notification">Simple notification</string>
+    <string name="btn_inbox_notification">Inbox notification</string>
+    <string name="btn_blinking_notification">Blinking notification</string>
+
+    <string name="simple_notification_title">Simple notification</string>
+    <string name="simple_notification_text">This is the test of my notification.</string>
+    <string name="inbox_notification_title">Inbox notification</string>
+    <string name="inbox_notification_text">Inbox notification</string>
+    <string name="blinking_notification_title">Blinking notification</string>
+    <string name="blinking_notification_text">Yeah, look at the blinking led (if you have one)</string>
+
 </resources>
