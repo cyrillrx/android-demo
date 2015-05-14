@@ -43,7 +43,7 @@
          the container. -->
     <fragment
         android:id="@+id/main_navigation_drawer"
-        android:name="com.cyrilleroux.android.demo.drawer.LeftDrawerFragment"
+        android:name="com.cyrillrx.android.demo.drawer.LeftDrawerFragment"
         android:layout_width="@dimen/navigation_drawer_width"
         android:layout_height="match_parent"
         android:layout_gravity="start"
@@ -51,7 +51,7 @@
 
     <fragment
         android:id="@+id/right_navigation_drawer"
-        android:name="com.cyrilleroux.android.demo.drawer.RightDrawerFragment"
+        android:name="com.cyrillrx.android.demo.drawer.RightDrawerFragment"
         android:layout_width="@dimen/navigation_drawer_width"
         android:layout_height="match_parent"
         android:layout_gravity="end"
