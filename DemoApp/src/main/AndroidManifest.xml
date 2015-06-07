@@ -57,6 +57,10 @@
             android:name=".notification.NotificationActivity"
             android:label="@string/title_notification" />
 
+        <activity
+            android:name=".PopupActivity"
+            android:theme="@style/Transparent" />
+
     </application>
 
 </manifest>

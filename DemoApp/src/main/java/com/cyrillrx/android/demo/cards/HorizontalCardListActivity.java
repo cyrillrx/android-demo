@@ -2,6 +2,7 @@ package com.cyrillrx.android.demo.cards;
 
 import android.os.Bundle;
 import android.support.v7.app.ActionBarActivity;
+import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
 
@@ -11,7 +12,7 @@ import com.cyrillrx.android.demo.R;
  * @author Cyril Leroux
  *         Created 11/12/2014.
  */
-public class HorizontalCardListActivity extends ActionBarActivity {
+public class HorizontalCardListActivity extends AppCompatActivity {
 
     private RecyclerView mRecyclerView;
     private RecyclerView.Adapter mAdapter;

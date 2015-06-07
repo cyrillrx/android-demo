@@ -3,10 +3,12 @@ package com.cyrillrx.android.demo.cards;
 import android.support.v7.widget.CardView;
 import android.support.v7.widget.RecyclerView;
 import android.view.LayoutInflater;
+import android.view.MotionEvent;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.TextView;
 
+import com.cyrillrx.android.demo.PopLayout;
 import com.cyrillrx.android.demo.R;
 
 /**
@@ -15,11 +17,10 @@ import com.cyrillrx.android.demo.R;
  */
 public class CardAdapter extends RecyclerView.Adapter<CardAdapter.ViewHolder> {
 
-    public static enum ScrollType {HORIZONTAL, VERTICAL, GRID}
+    public enum ScrollType {HORIZONTAL, VERTICAL, GRID}
 
     private String[] mDataSet;
     private ScrollType mScrollType;
-
 
     public static class ViewHolder extends RecyclerView.ViewHolder {
 
@@ -66,10 +67,34 @@ public class CardAdapter extends RecyclerView.Adapter<CardAdapter.ViewHolder> {
 
     // Replace the contents of a view (invoked by the layout manager)
     @Override
-    public void onBindViewHolder(ViewHolder viewHolder, int position) {
+    public void onBindViewHolder(final ViewHolder viewHolder, int position) {
         // - get element from your dataset at this position
         // - replace the contents of the view with that element
         ((TextView) viewHolder.mCardView.findViewById(R.id.info_text)).setText(mDataSet[position]);
+        viewHolder.itemView.setOnLongClickListener(new View.OnLongClickListener() {
+            @Override
+            public boolean onLongClick(View v) {
+                v.getParent().requestDisallowInterceptTouchEvent(true);
+                if (v.getContext() instanceof CardGridActivity) {
+                    final CardGridActivity activity = (CardGridActivity) v.getContext();
+                    final PopLayout popLayout = activity.showPopup(0,0);
+                    v.setOnTouchListener(new View.OnTouchListener() {
+                        @Override
+                        public boolean onTouch(View v, MotionEvent event) {
+                            if (event.getAction() == MotionEvent.ACTION_UP) {
+                                activity.hidePopup();
+                                return true;
+                            } else {
+                                popLayout.onTouchEvent(event);
+                            }
+                            return false;
+                        }
+                    });
+                }
+
+                return false;
+            }
+        });
     }
 
     @Override
