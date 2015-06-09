@@ -1,0 +1,22 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:background="@color/overlay"
+    android:layout_height="match_parent"
+    android:orientation="vertical">
+
+    <com.cyrillrx.android.demo.PopLayout
+        android:descendantFocusability="beforeDescendants"
+        android:id="@+id/popup"
+        android:layout_width="200dp"
+        android:layout_height="200sp"
+        android:background="@android:color/holo_blue_bright"
+        android:focusableInTouchMode="true">
+
+        <TextView
+            style="@style/sample_title"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent" />
+    </com.cyrillrx.android.demo.PopLayout>
+
+</RelativeLayout>

@@ -15,7 +15,7 @@ public class PopupActivity extends AppCompatActivity {
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.layout_popup);
+        setContentView(R.layout.layout_popup_fullscreen);
 
         View view = findViewById(R.id.popup);
         if (!view.requestFocus()) {

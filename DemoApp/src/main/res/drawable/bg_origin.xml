@@ -1,0 +1,25 @@
+<?xml version="1.0" encoding="utf-8"?>
+
+<selector xmlns:android="http://schemas.android.com/apk/res/android">
+
+
+    <item>
+        <layer-list>
+            <item>
+                <shape android:innerRadiusRatio="2.45" android:shape="ring" android:thicknessRatio="11" android:useLevel="false">
+                    <solid android:color="@color/origin" />
+                </shape>
+            </item>
+        </layer-list>
+    </item>
+
+    <item android:state_hovered="true">
+        <layer-list>
+            <item>
+                <shape android:innerRadiusRatio="2.45" android:shape="ring" android:thicknessRatio="11" android:useLevel="false">
+                    <solid android:color="@android:color/white" />
+                </shape>
+            </item>
+        </layer-list>
+    </item>
+</selector>

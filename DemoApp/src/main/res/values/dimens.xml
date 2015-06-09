@@ -17,4 +17,6 @@
     <dimen name="text_subtitle">16sp</dimen>
     <dimen name="text_placeholder">20sp</dimen>
 
+    <dimen name="touch_target">54dp</dimen>
+
 </resources>

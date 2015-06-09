@@ -63,4 +63,11 @@
         <item name="android:textSize">@dimen/text_placeholder</item>
     </style>
 
+    <style name="TouchTarget">
+        <item name="android:layout_width">@dimen/touch_target</item>
+        <item name="android:layout_height">@dimen/touch_target</item>
+        <item name="android:background">@drawable/bg_circular</item>
+        <item name="android:textColor">@color/primary_dark</item>
+    </style>
+
 </resources>

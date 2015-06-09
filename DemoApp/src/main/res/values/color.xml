@@ -21,4 +21,7 @@
     <color name="double_nav_primary">#ff74d336</color>
     <color name="double_nav_primary_dark">#ff57ab35</color>
 
+    <color name="overlay">#55000000</color>
+    <color name="origin">#77ffffff</color>
+
 </resources>
