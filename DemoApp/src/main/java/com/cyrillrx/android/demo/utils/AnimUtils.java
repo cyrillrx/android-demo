@@ -9,7 +9,7 @@ import android.view.View;
  * @author Cyril Leroux
  *         Created on 08/06/15
  */
-public class AnimationUtils {
+public class AnimUtils {
 
     public static final String ALPHA = "alpha";
     public static final String ROTATION = "rotation";
@@ -18,7 +18,7 @@ public class AnimationUtils {
     public static final String TRANSLATION_X = "translationX";
     public static final String TRANSLATION_Y = "translationY";
 
-    private AnimationUtils() {
+    private AnimUtils() {
         //No instances.
     }
 
@@ -50,14 +50,14 @@ public class AnimationUtils {
 
         view.setVisibility(View.VISIBLE);
 
-        final ObjectAnimator objectAnimator = ObjectAnimator.ofFloat(view, AnimationUtils.ALPHA, view.getAlpha(), 1f);
+        final ObjectAnimator objectAnimator = ObjectAnimator.ofFloat(view, AnimUtils.ALPHA, view.getAlpha(), 1f);
         objectAnimator.setDuration(400);
         objectAnimator.start();
     }
 
     public static void fadeOut(final View view) {
 
-        final ObjectAnimator objectAnimator = ObjectAnimator.ofFloat(view, AnimationUtils.ALPHA, view.getAlpha(), 0f);
+        final ObjectAnimator objectAnimator = ObjectAnimator.ofFloat(view, AnimUtils.ALPHA, view.getAlpha(), 0f);
         objectAnimator.setDuration(400);
         objectAnimator.addListener(new Animator.AnimatorListener() {
             @Override
@@ -77,10 +77,10 @@ public class AnimationUtils {
 
     public static ObjectAnimator fadeInAnimator(final View view) {
         view.setVisibility(View.VISIBLE);
-        return ObjectAnimator.ofFloat(view, AnimationUtils.ALPHA, view.getAlpha(), 1f);
+        return ObjectAnimator.ofFloat(view, AnimUtils.ALPHA, view.getAlpha(), 1f);
     }
 
     public static ObjectAnimator fadeOutAnimator(final View view) {
-        return ObjectAnimator.ofFloat(view, AnimationUtils.ALPHA, view.getAlpha(), 0f);
+        return ObjectAnimator.ofFloat(view, AnimUtils.ALPHA, view.getAlpha(), 0f);
     }
 }

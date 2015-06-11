@@ -1,7 +1,9 @@
 package com.cyrillrx.android.demo.cards;
 
 import android.app.Activity;
+import android.content.Context;
 import android.graphics.PixelFormat;
+import android.support.annotation.IdRes;
 import android.support.v7.widget.CardView;
 import android.support.v7.widget.RecyclerView;
 import android.view.LayoutInflater;
@@ -9,11 +11,12 @@ import android.view.MotionEvent;
 import android.view.View;
 import android.view.ViewGroup;
 import android.view.WindowManager;
-import android.widget.PopupWindow;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import com.cyrillrx.android.demo.CustomPopup;
 import com.cyrillrx.android.demo.R;
+import com.cyrillrx.android.toolbox.Logger;
 
 /**
  * @author Cyril Leroux
@@ -25,17 +28,36 @@ public class CardAdapter extends RecyclerView.Adapter<CardAdapter.ViewHolder> {
 
     private String[] mDataSet;
     private ScrollType mScrollType;
-    private CustomPopup mCustomPopup;
 
+    private CustomPopup mCustomPopup;
     private float mTouchX;
     private float mTouchY;
-
-    private View.OnTouchListener mListener = new View.OnTouchListener() {
+    private View.OnTouchListener mTouchListener = new View.OnTouchListener() {
         @Override
         public boolean onTouch(View v, MotionEvent event) {
-            mTouchX = event.getRawX();
-            mTouchY = event.getRawY();
+            if (event.getAction() == MotionEvent.ACTION_DOWN) {
+                Logger.debug("ContentViewHolder", "onTouch: " + event);
+                mTouchX = event.getRawX();
+                mTouchY = event.getRawY();
+            }
             return false;
+        }
+    };
+
+    private View.OnTouchListener mDispatchTouchListener = new View.OnTouchListener() {
+        @Override
+        public boolean onTouch(View v, MotionEvent event) {
+
+            final int action = event.getAction();
+            switch (action) {
+
+                case MotionEvent.ACTION_UP:
+                case MotionEvent.ACTION_MOVE:
+                    return mCustomPopup.isShowing() && mCustomPopup.dispatchTouchEvent(event);
+
+                default:
+                    return false;
+            }
         }
     };
 
@@ -88,37 +110,11 @@ public class CardAdapter extends RecyclerView.Adapter<CardAdapter.ViewHolder> {
         // - get element from your dataset at this position
         // - replace the contents of the view with that element
         ((TextView) viewHolder.mCardView.findViewById(R.id.info_text)).setText(mDataSet[position]);
-        viewHolder.itemView.setOnTouchListener(mListener);
+        viewHolder.itemView.setOnTouchListener(mTouchListener);
         viewHolder.itemView.setOnLongClickListener(new View.OnLongClickListener() {
             @Override
-            public boolean onLongClick(final View v) {
-                v.getParent().requestDisallowInterceptTouchEvent(true);
-                final int x = v.getLeft() + v.getWidth() / 2;
-                final int y = v.getTop() + v.getHeight() / 2;
-                mCustomPopup = showPopup(v, x, y);
-                mCustomPopup.setDismissListener(new PopupWindow.OnDismissListener() {
-                    @Override
-                    public void onDismiss() {
-                        v.getParent().requestDisallowInterceptTouchEvent(false);
-                    }
-                });
-                v.setOnTouchListener(new View.OnTouchListener() {
-                    @Override
-                    public boolean onTouch(View v, MotionEvent event) {
-                        if (event.getAction() == MotionEvent.ACTION_DOWN) {
-                            return false;
-                        }
-                        if (mCustomPopup.isShown()
-                                && (event.getAction() == MotionEvent.ACTION_UP
-                                || event.getAction() == MotionEvent.ACTION_MOVE)) {
-                            mCustomPopup.dispatchTouchEvent(event);
-                            return true;
-                        }
-                        return false;
-                    }
-                });
-
-                return false;
+            public boolean onLongClick(View v) {
+                return CardAdapter.this.onLongClick(v);
             }
         });
     }
@@ -126,31 +122,78 @@ public class CardAdapter extends RecyclerView.Adapter<CardAdapter.ViewHolder> {
     @Override
     public int getItemCount() { return mDataSet.length; }
 
-    // The method that displays the popup.
-    public CustomPopup showPopup(View parent, float posX, float posY) {
+    protected boolean onLongClick(final View v) {
 
-        Activity activity = (Activity) parent.getContext();
-        // Creating the PopupWindow
+        final Context applicationContext = v.getContext().getApplicationContext();
+
+        mCustomPopup = getPopup(v.getContext());
+        // Displaying the popup at the specified location, + offsets.
+        if (!mCustomPopup.show(mTouchX, mTouchY)) {
+            return false;
+        }
+
+        // After a long click, dispatch down and move actions to the popup
+        v.setOnTouchListener(mDispatchTouchListener);
+
+        // Prevent parent and its ancestors to intercept touch events
+        v.getParent().requestDisallowInterceptTouchEvent(true);
+
+        mCustomPopup.setResultListener(new CustomPopup.OnDismissListener() {
+
+            @Override
+            public void onDismiss(@IdRes int viewId) {
+                resetTouch();
+
+                switch (viewId) {
+
+                    case R.id.btn_1:
+                        Toast.makeText(applicationContext, "Btn1", Toast.LENGTH_SHORT).show();
+                        break;
+
+                    case R.id.btn_2:
+                        Toast.makeText(applicationContext, "Btn2", Toast.LENGTH_SHORT).show();
+                        break;
+
+                    case R.id.btn_3:
+                        Toast.makeText(applicationContext, "Btn3", Toast.LENGTH_SHORT).show();
+                        break;
+
+                    default:
+                        // Dismissed
+                }
+            }
+
+            private void resetTouch() {
+                // Reset touch Listener
+                v.setOnTouchListener(mTouchListener);
+                // Allow parent and its ancestors to intercept touch events
+                v.getParent().requestDisallowInterceptTouchEvent(false);
+
+            }
+        });
+
+        return true;
+    }
+
+    /**
+     * Create the popup and add it to the WindowManager.
+     * If the popup already exists, it's not recreated.
+     *
+     * @return The Contextual popup.
+     */
+    private CustomPopup getPopup(Context context) {
+
         if (mCustomPopup == null) {
-            mCustomPopup = new CustomPopup(activity);
-            activity.getWindowManager()
+            // Creating and add the view to the Windows manager
+            mCustomPopup = new CustomPopup(context);
+            ((Activity) context).getWindowManager()
                     .addView(mCustomPopup,
                             new WindowManager.LayoutParams(
                                     WindowManager.LayoutParams.TYPE_APPLICATION_PANEL,
                                     WindowManager.LayoutParams.FLAG_SPLIT_TOUCH,
                                     PixelFormat.TRANSPARENT
-
                             ));
         }
-
-        // Displaying the popup at the specified location, + offsets.
-        mCustomPopup.show(posX, posY);
         return mCustomPopup;
-    }
-
-    public void hidePopup() {
-        if (mCustomPopup != null) {
-            mCustomPopup.dismiss();
-        }
     }
 }

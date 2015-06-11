@@ -4,17 +4,22 @@ import android.animation.Animator;
 import android.animation.AnimatorListenerAdapter;
 import android.animation.AnimatorSet;
 import android.animation.ObjectAnimator;
+import android.annotation.TargetApi;
+import android.app.Activity;
 import android.content.Context;
+import android.graphics.Point;
+import android.graphics.PointF;
+import android.os.Build;
+import android.support.annotation.IdRes;
 import android.util.AttributeSet;
+import android.view.Display;
 import android.view.MotionEvent;
 import android.view.View;
 import android.view.animation.AccelerateInterpolator;
 import android.view.animation.OvershootInterpolator;
 import android.widget.FrameLayout;
-import android.widget.PopupWindow;
 
-import com.cyrillrx.android.demo.utils.AnimationUtils;
-import com.cyrillrx.android.toolbox.Logger;
+import com.cyrillrx.android.demo.utils.AnimUtils;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -25,9 +30,11 @@ import java.util.List;
  */
 public class CustomPopup extends FrameLayout {
 
-    private static final String TAG = CustomPopup.class.getSimpleName();
+    private static final int EDGE_THRESHOLD = 300;
+    private static final double RADIUS = 250d;
+    private static final double DEFAULT_ANGLE = Math.PI / 2d;
 
-    private PopupWindow.OnDismissListener mDismissListener;
+    private OnDismissListener mDismissListener;
 
     private View mOverlay;
     private View mOrigin;
@@ -52,6 +59,7 @@ public class CustomPopup extends FrameLayout {
         init(context);
     }
 
+    @TargetApi(Build.VERSION_CODES.LOLLIPOP)
     public CustomPopup(Context context, AttributeSet attrs, int defStyleAttr, int defStyleRes) {
         super(context, attrs, defStyleAttr, defStyleRes);
         init(context);
@@ -68,38 +76,13 @@ public class CustomPopup extends FrameLayout {
         mOverlay.setOnClickListener(new OnClickListener() {
             @Override
             public void onClick(View v) {
-                dismiss();
-            }
-        });
-
-        mBtn1.setOnHoverListener(new OnHoverListener() {
-            @Override
-            public boolean onHover(View v, MotionEvent event) {
-                Logger.debug(TAG, "onHover btn1: " + event);
-                return false;
-            }
-        });
-
-        mBtn2.setOnHoverListener(new OnHoverListener() {
-            @Override
-            public boolean onHover(View v, MotionEvent event) {
-                Logger.debug(TAG, "onHover btn2: " + event);
-                return false;
-            }
-        });
-
-        mBtn3.setOnHoverListener(new OnHoverListener() {
-            @Override
-            public boolean onHover(View v, MotionEvent event) {
-                Logger.debug(TAG, "onHover btn3: " + event);
-                return false;
+                dismiss(NO_ID);
             }
         });
     }
 
     @Override
     public boolean dispatchTouchEvent(MotionEvent event) {
-//        Logger.debug(TAG, "dispatchTouchEvent: " + event);
 
         if (event.getAction() == MotionEvent.ACTION_MOVE) {
             mBtn1.setHovered(isInView(mBtn1, event));
@@ -109,30 +92,30 @@ public class CustomPopup extends FrameLayout {
 
         } else if (event.getAction() == MotionEvent.ACTION_UP) {
             if (isInView(mBtn1, event)) {
-                Logger.debug(TAG, "Up on btn1: " + event);
                 mBtn1.setHovered(false);
-                dismiss();
+                dismiss(mBtn1.getId());
                 return true;
             }
             if (isInView(mBtn2, event)) {
-                Logger.debug(TAG, "Up on btn2: " + event);
                 mBtn2.setHovered(false);
-                dismiss();
+                dismiss(mBtn2.getId());
                 return true;
             }
             if (isInView(mBtn3, event)) {
-                Logger.debug(TAG, "Up on btn3: " + event);
                 mBtn3.setHovered(false);
-                dismiss();
+                dismiss(mBtn3.getId());
                 return true;
             }
-            dismiss();
-            return false;
+            dismiss(NO_ID);
+            return true;
         }
 
         return super.dispatchTouchEvent(event);
     }
 
+    /**
+     * @return true if the event occurred inside the view's bounding rect.
+     */
     public boolean isInView(View view, MotionEvent event) {
         return event.getRawX() > view.getX() &&
                 event.getRawX() < view.getX() + view.getRight() &&
@@ -140,63 +123,104 @@ public class CustomPopup extends FrameLayout {
                 event.getRawY() < view.getY() + view.getHeight();
     }
 
-    public void show(float x, float y) {
-        if (mShowing) { return; }
+    /**
+     * Displays the popup at the specified position.
+     *
+     * @return true if show succeeded.
+     */
+    public boolean show(float x, float y) {
+
+        if (mShowing) { return false; }
 
         mShowing = true;
         setVisibility(View.VISIBLE);
 
-        AnimationUtils.fadeIn(mOverlay);
-        AnimationUtils.fadeIn(mOrigin);
-
         mOrigin.setX(x - mOrigin.getWidth() / 2f);
-        mOrigin.setY(y + mOrigin.getHeight() / 2f);
+        mOrigin.setY(y - mOrigin.getHeight() / 2f);
 
-        mBtn1.setX(mOrigin.getX() - 150);
-        mBtn1.setY(mOrigin.getY() - 200);
+        AnimUtils.fadeIn(mOverlay);
+        AnimUtils.fadeIn(mOrigin);
 
-        mBtn2.setX(mOrigin.getX());
-        mBtn2.setY(mOrigin.getY() - 250);
-
-        mBtn3.setX(mOrigin.getX() + 150);
-        mBtn3.setY(mOrigin.getY() - 200);
+        setItemPositions(getAngle(x, y));
 
         showAnimation();
+        return true;
     }
 
-    public void dismiss() {
-        if (mDismissListener != null) {
-            mDismissListener.onDismiss();
+    private double getAngle(float x, float y) {
+
+        double divider = 0d;
+        double leftProximity = 0d;
+        double rightProximity = 0d;
+        double topProximity = 0d;
+        double bottomProximity = 0d;
+
+        double proximity1 = 0d;
+
+        if (y < EDGE_THRESHOLD) {
+            topProximity = 3d * Math.PI / 2d; // 270°
+            divider++;
         }
+
+        final Point size = getSreenSize(getContext());
+        if (x > size.x - EDGE_THRESHOLD) {
+            rightProximity = Math.PI; // 180°
+            divider++;
+        }
+
+        if (y > size.y - EDGE_THRESHOLD) {
+            bottomProximity = Math.PI / 2d; // 90°
+            divider++;
+        }
+
+        if (x < EDGE_THRESHOLD) {
+            leftProximity = (topProximity > 0) ? 2d * Math.PI : 0; // 0° or 360°
+            divider++;
+        }
+
+        if (divider == 0d) {
+            return DEFAULT_ANGLE;
+        }
+
+        return (leftProximity + topProximity + rightProximity + bottomProximity) / divider;
+    }
+
+    private void setItemPositions(double angle) {
+
+        PointF bookmarkPos = getPolarToCartesian(angle);
+        mBtn2.setX(mOrigin.getX() + bookmarkPos.x);
+        mBtn2.setY(mOrigin.getY() - bookmarkPos.y);
+
+        double diff = Math.PI / 4d;
+        PointF likePos = getPolarToCartesian(angle + diff);
+        mBtn1.setX(mOrigin.getX() + likePos.x);
+        mBtn1.setY(mOrigin.getY() - likePos.y);
+
+        PointF playPos = getPolarToCartesian(angle - diff);
+        mBtn3.setX(mOrigin.getX() + playPos.x);
+        mBtn3.setY(mOrigin.getY() - playPos.y);
+    }
+
+    protected void dismiss(@IdRes int viewId) {
+
+        if (mDismissListener != null) {
+            mDismissListener.onDismiss(viewId);
+        }
+
         hideAnimation();
         mShowing = false;
     }
 
     private void showAnimation() {
 
-//        List<Animator> animList = new ArrayList<>();
-//        for (int i = 0, len = mArcLayout.getChildCount(); i < len; i++) {
-//            animList.add(createShowItemAnimator(mOrigin, mArcLayout.getChildAt(i)));
-//        }
         List<Animator> animList = new ArrayList<>();
 
-        animList.add(AnimationUtils.fadeInAnimator(mOverlay));
-        animList.add(AnimationUtils.fadeInAnimator(mOrigin));
-        animList.add(AnimationUtils.fadeInAnimator(mBtn1));
-        animList.add(AnimationUtils.fadeInAnimator(mBtn2));
-        animList.add(AnimationUtils.fadeInAnimator(mBtn3));
+        animList.add(AnimUtils.fadeInAnimator(mOverlay));
+        animList.add(AnimUtils.fadeInAnimator(mOrigin));
 
-        animList.add(ObjectAnimator.ofFloat(mBtn1, AnimationUtils.TRANSLATION_X, mOrigin.getX(), mBtn1.getX()));
-        animList.add(ObjectAnimator.ofFloat(mBtn2, AnimationUtils.TRANSLATION_X, mOrigin.getX(), mBtn2.getX()));
-        animList.add(ObjectAnimator.ofFloat(mBtn3, AnimationUtils.TRANSLATION_X, mOrigin.getX(), mBtn3.getX()));
-
-        animList.add(ObjectAnimator.ofFloat(mBtn1, AnimationUtils.TRANSLATION_Y, mOrigin.getY(), mBtn1.getY()));
-        animList.add(ObjectAnimator.ofFloat(mBtn2, AnimationUtils.TRANSLATION_Y, mOrigin.getY(), mBtn2.getY()));
-        animList.add(ObjectAnimator.ofFloat(mBtn3, AnimationUtils.TRANSLATION_Y, mOrigin.getY(), mBtn3.getY()));
-
-        animList.add(ObjectAnimator.ofFloat(mBtn1, AnimationUtils.ROTATION, 360f, 0f));
-        animList.add(ObjectAnimator.ofFloat(mBtn2, AnimationUtils.ROTATION, 360f, 0f));
-        animList.add(ObjectAnimator.ofFloat(mBtn3, AnimationUtils.ROTATION, 360f, 0f));
+        animList.add(getShowAnimator(mOrigin, mBtn1));
+        animList.add(getShowAnimator(mOrigin, mBtn2));
+        animList.add(getShowAnimator(mOrigin, mBtn3));
 
         AnimatorSet animSet = new AnimatorSet();
         animSet.setDuration(300);
@@ -208,30 +232,15 @@ public class CustomPopup extends FrameLayout {
     private void hideAnimation() {
 
         List<Animator> animList = new ArrayList<>();
-//        for (int i = mArcLayout.getChildCount() - 1; i >= 0; i--) {
-//            animList.add(createHideItemAnimator(mOrigin, mArcLayout.getChildAt(i)));
-//        }
-        animList.add(AnimationUtils.fadeOutAnimator(mOverlay));
-        animList.add(AnimationUtils.fadeOutAnimator(mOrigin));
-        animList.add(AnimationUtils.fadeOutAnimator(mBtn1));
-        animList.add(AnimationUtils.fadeOutAnimator(mBtn2));
-        animList.add(AnimationUtils.fadeOutAnimator(mBtn3));
+        animList.add(AnimUtils.fadeOutAnimator(mOverlay));
+        animList.add(AnimUtils.fadeOutAnimator(mOrigin));
 
-        animList.add(ObjectAnimator.ofFloat(mBtn1, AnimationUtils.TRANSLATION_X, mBtn1.getX(), mOrigin.getX()));
-        animList.add(ObjectAnimator.ofFloat(mBtn2, AnimationUtils.TRANSLATION_X, mBtn2.getX(), mOrigin.getX()));
-        animList.add(ObjectAnimator.ofFloat(mBtn3, AnimationUtils.TRANSLATION_X, mBtn3.getX(), mOrigin.getX()));
-
-        animList.add(ObjectAnimator.ofFloat(mBtn1, AnimationUtils.TRANSLATION_Y, mBtn1.getY(), mOrigin.getY()));
-        animList.add(ObjectAnimator.ofFloat(mBtn2, AnimationUtils.TRANSLATION_Y, mBtn2.getY(), mOrigin.getY()));
-        animList.add(ObjectAnimator.ofFloat(mBtn3, AnimationUtils.TRANSLATION_Y, mBtn3.getY(), mOrigin.getY()));
-
-        animList.add(ObjectAnimator.ofFloat(mBtn1, AnimationUtils.ROTATION, 360f, 0f));
-        animList.add(ObjectAnimator.ofFloat(mBtn2, AnimationUtils.ROTATION, 360f, 0f));
-        animList.add(ObjectAnimator.ofFloat(mBtn3, AnimationUtils.ROTATION, 360f, 0f));
+        animList.add(getHideAnimator(mOrigin, mBtn1));
+        animList.add(getHideAnimator(mOrigin, mBtn2));
+        animList.add(getHideAnimator(mOrigin, mBtn3));
 
         AnimatorSet animSet = new AnimatorSet();
         animSet.setDuration(200);
-//        animSet.setInterpolator(new AnticipateInterpolator());
         animSet.setInterpolator(new AccelerateInterpolator());
         animSet.playTogether(animList);
         animSet.addListener(new AnimatorListenerAdapter() {
@@ -242,61 +251,74 @@ public class CustomPopup extends FrameLayout {
             }
         });
         animSet.start();
-
     }
 
     public static ObjectAnimator transXFromOrigin(final View view) {
-        return ObjectAnimator.ofFloat(view, AnimationUtils.TRANSLATION_X, view.getTranslationX(), 0f);
+        return ObjectAnimator.ofFloat(view, AnimUtils.TRANSLATION_X, view.getTranslationX(), 0f);
     }
 
-    private Animator createShowItemAnimator(View origin, View item) {
-
-        float dx = origin.getX() - item.getX();
-        float dy = origin.getY() - item.getY();
-
-        item.setRotation(0f);
-        item.setTranslationX(dx);
-        item.setTranslationY(dy);
+    private Animator getShowAnimator(View origin, View item) {
 
         Animator anim = ObjectAnimator.ofPropertyValuesHolder(
                 item,
-                AnimationUtils.rotation(item.getRotation(), 360f),
-                AnimationUtils.translationX(item.getTranslationX(), 0f),
-                AnimationUtils.translationY(item.getTranslationY(), 0f)
+                AnimUtils.alpha(item.getAlpha(), 1f),
+                AnimUtils.rotation(item.getRotation(), 720f),
+                AnimUtils.translationX(origin.getX(), item.getX()),
+                AnimUtils.translationY(origin.getY(), item.getY())
         );
 
         return anim;
     }
 
-    private Animator createHideItemAnimator(View origin, final View item) {
-
-        float dx = origin.getX() - item.getX();
-        float dy = origin.getY() - item.getY();
+    private Animator getHideAnimator(View origin, final View item) {
 
         Animator anim = ObjectAnimator.ofPropertyValuesHolder(
                 item,
-                AnimationUtils.rotation(360f, 0f),
-                AnimationUtils.translationX(0f, dx),
-                AnimationUtils.translationY(0f, dy)
+                AnimUtils.alpha(item.getAlpha(), 0f),
+                AnimUtils.rotation(item.getRotation(), -720f),
+                AnimUtils.translationX(item.getX(), origin.getX()),
+                AnimUtils.translationY(item.getY(), origin.getY())
         );
 
         anim.addListener(new AnimatorListenerAdapter() {
             @Override
             public void onAnimationEnd(Animator animation) {
                 super.onAnimationEnd(animation);
-                item.setTranslationX(0f);
-                item.setTranslationY(0f);
+                setVisibility(View.GONE);
             }
         });
 
         return anim;
     }
 
-    public void setDismissListener(PopupWindow.OnDismissListener listener) {
+    public boolean isShowing() { return mShowing; }
+
+    public void setResultListener(OnDismissListener listener) {
         mDismissListener = listener;
     }
 
-    public boolean isShowing() {
-        return mShowing;
+    /**
+     * Listener that is called when this popup window returns a result.
+     */
+    public interface OnDismissListener {
+
+        /** Called when this popup window is dismissed. */
+        void onDismiss(@IdRes int viewId);
+    }
+
+    // TODO move in a util class
+    private static PointF getPolarToCartesian(double angleInRadians) {
+        return new PointF(
+                (float) (Math.cos(angleInRadians) * RADIUS),
+                (float) (Math.sin(angleInRadians) * RADIUS)
+        );
+    }
+
+    // TODO move in a util class
+    private static Point getSreenSize(Context context) {
+        final Display display = ((Activity) context).getWindowManager().getDefaultDisplay();
+        final Point size = new Point();
+        display.getSize(size);
+        return size;
     }
 }

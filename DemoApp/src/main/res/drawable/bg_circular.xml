@@ -19,4 +19,5 @@
             <solid android:color="@android:color/holo_red_dark" />
         </shape>
     </item>
+
 </selector>
