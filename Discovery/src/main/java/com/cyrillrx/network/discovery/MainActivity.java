@@ -2,7 +2,7 @@ package com.cyrillrx.network.discovery;
 
 import android.net.wifi.WifiManager;
 import android.os.Bundle;
-import android.support.v7.app.ActionBarActivity;
+import android.support.v7.app.AppCompatActivity;
 import android.view.View;
 import android.widget.TextView;
 
@@ -10,7 +10,7 @@ import android.widget.TextView;
  * @author Cyril Leroux
  *         Created 09/11/2014.
  */
-public class MainActivity extends ActionBarActivity implements View.OnClickListener {
+public class MainActivity extends AppCompatActivity implements View.OnClickListener {
 
     private static String PORT = "9090";
     private TextView mTvIpAddress;

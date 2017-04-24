@@ -2,7 +2,7 @@ package com.cyrillrx.webview;
 
 import android.content.res.Configuration;
 import android.os.Bundle;
-import android.support.v7.app.ActionBarActivity;
+import android.support.v7.app.AppCompatActivity;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.webkit.WebView;
@@ -10,8 +10,7 @@ import android.webkit.WebViewClient;
 
 import com.cyrillrx.webview.utils.IntentKey;
 
-
-public class WebActivity extends ActionBarActivity {
+public class WebActivity extends AppCompatActivity {
 
     private WebView mWebView;
 

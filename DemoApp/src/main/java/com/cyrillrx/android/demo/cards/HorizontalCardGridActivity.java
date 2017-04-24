@@ -1,7 +1,6 @@
 package com.cyrillrx.android.demo.cards;
 
 import android.os.Bundle;
-import android.support.v7.app.ActionBarActivity;
 import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.GridLayoutManager;
 import android.support.v7.widget.LinearLayoutManager;
@@ -15,11 +14,7 @@ import com.cyrillrx.android.demo.R;
  */
 public class HorizontalCardGridActivity extends AppCompatActivity {
 
-    private RecyclerView mRecyclerView;
-    private RecyclerView.Adapter mAdapter;
-    private GridLayoutManager mLayoutManager;
-
-    private String[] mDataSet = new String[]{
+    private String[] dataSet = new String[]{
             "TOTO", "TATA", "TUTU",
             "TOTO", "TATA", "TUTU",
             "TOTO", "TATA", "TUTU",
@@ -33,19 +28,19 @@ public class HorizontalCardGridActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_card_list_h);
 
-        mRecyclerView = (RecyclerView) findViewById(R.id.my_recycler_view);
+        final RecyclerView recyclerView = (RecyclerView) findViewById(R.id.my_recycler_view);
 
         // use this setting to improve performance if you know that changes
         // in content do not change the layout size of the RecyclerView
-        mRecyclerView.setHasFixedSize(true);
+        recyclerView.setHasFixedSize(true);
 
         // Use a grid manager
-        mLayoutManager = new GridLayoutManager(this, 3);
-        mLayoutManager.setOrientation(LinearLayoutManager.HORIZONTAL);
-        mRecyclerView.setLayoutManager(mLayoutManager);
+        final GridLayoutManager layoutManager = new GridLayoutManager(this, 3);
+        layoutManager.setOrientation(LinearLayoutManager.HORIZONTAL);
+        recyclerView.setLayoutManager(layoutManager);
 
         // specify an adapter
-        mAdapter = new CardAdapter(mDataSet, CardAdapter.ScrollType.GRID);
-        mRecyclerView.setAdapter(mAdapter);
+        final RecyclerView.Adapter adapter = new CardAdapter(dataSet, CardAdapter.ScrollType.GRID);
+        recyclerView.setAdapter(adapter);
     }
 }

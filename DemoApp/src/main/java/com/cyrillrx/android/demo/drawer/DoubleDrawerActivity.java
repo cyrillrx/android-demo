@@ -6,7 +6,7 @@ import android.app.FragmentManager;
 import android.os.Bundle;
 import android.support.v4.widget.DrawerLayout;
 import android.support.v7.app.ActionBar;
-import android.support.v7.app.ActionBarActivity;
+import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.Toolbar;
 import android.view.LayoutInflater;
 import android.view.Menu;
@@ -16,19 +16,19 @@ import android.view.ViewGroup;
 
 import com.cyrillrx.android.demo.R;
 
-public class DoubleDrawerActivity extends ActionBarActivity
+public class DoubleDrawerActivity extends AppCompatActivity
         implements AbstractNavigationDrawerFragment.NavigationDrawerCallbacks {
 
     /**
      * Fragment managing the behaviors, interactions and presentation of the navigation drawer.
      */
-    private LeftDrawerFragment mLeftDrawerFragment;
-    private RightDrawerFragment mRightDrawerFragment;
+    private LeftDrawerFragment leftDrawerFragment;
+    private RightDrawerFragment rightDrawerFragment;
 
     /**
      * Used to store the last screen title. For use in {@link #restoreActionBar()}.
      */
-    private CharSequence mTitle;
+    private CharSequence title;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -38,13 +38,14 @@ public class DoubleDrawerActivity extends ActionBarActivity
         final Toolbar toolbar = (Toolbar) findViewById(R.id.custom_toolbar);
         setSupportActionBar(toolbar);
 
-        mTitle = getTitle();
-        mLeftDrawerFragment = (LeftDrawerFragment) getFragmentManager().findFragmentById(R.id.main_navigation_drawer);
-        mRightDrawerFragment = (RightDrawerFragment) getFragmentManager().findFragmentById(R.id.right_navigation_drawer);
+        title = getTitle();
+        leftDrawerFragment = (LeftDrawerFragment) getFragmentManager().findFragmentById(R.id.main_navigation_drawer);
+        rightDrawerFragment = (RightDrawerFragment) getFragmentManager().findFragmentById(R.id.right_navigation_drawer);
+
         // Set up the drawer.
         final DrawerLayout drawerLayout = (DrawerLayout) findViewById(R.id.drawer_layout);
-        mLeftDrawerFragment.setUp(R.id.main_navigation_drawer, drawerLayout);
-        mRightDrawerFragment.setUp(R.id.right_navigation_drawer, drawerLayout);
+        leftDrawerFragment.setUp(R.id.main_navigation_drawer, drawerLayout);
+        rightDrawerFragment.setUp(R.id.right_navigation_drawer, drawerLayout);
     }
 
     @Override
@@ -57,25 +58,30 @@ public class DoubleDrawerActivity extends ActionBarActivity
     }
 
     public void onSectionAttached(int number) {
+
         switch (number) {
             case 101:
-                mTitle = getString(R.string.title_section_left_1);
+                title = getString(R.string.title_section_left_1);
                 break;
+
             case 102:
-                mTitle = getString(R.string.title_section_left_2);
+                title = getString(R.string.title_section_left_2);
                 break;
+
             case 103:
-                mTitle = getString(R.string.title_section_left_3);
+                title = getString(R.string.title_section_left_3);
                 break;
 
             case 201:
-                mTitle = getString(R.string.title_section_right_1);
+                title = getString(R.string.title_section_right_1);
                 break;
+
             case 202:
-                mTitle = getString(R.string.title_section_right_2);
+                title = getString(R.string.title_section_right_2);
                 break;
+
             case 203:
-                mTitle = getString(R.string.title_section_right_3);
+                title = getString(R.string.title_section_right_3);
                 break;
         }
     }
@@ -86,7 +92,7 @@ public class DoubleDrawerActivity extends ActionBarActivity
             return;
         }
         actionBar.setDisplayShowTitleEnabled(true);
-        actionBar.setTitle(mTitle);
+        actionBar.setTitle(title);
     }
 
     @Override
@@ -103,7 +109,7 @@ public class DoubleDrawerActivity extends ActionBarActivity
     }
 
     public boolean isDrawerOpen() {
-        return mLeftDrawerFragment.isDrawerOpen() || mRightDrawerFragment.isDrawerOpen();
+        return leftDrawerFragment.isDrawerOpen() || rightDrawerFragment.isDrawerOpen();
     }
 
     @Override

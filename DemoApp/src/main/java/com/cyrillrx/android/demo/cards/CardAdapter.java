@@ -26,25 +26,26 @@ public class CardAdapter extends RecyclerView.Adapter<CardAdapter.ViewHolder> {
 
     public enum ScrollType {HORIZONTAL, VERTICAL, GRID}
 
-    private String[] mDataSet;
-    private ScrollType mScrollType;
+    private String[] dataSet;
+    private ScrollType scrollType;
 
-    private CustomPopup mCustomPopup;
-    private float mTouchX;
-    private float mTouchY;
-    private View.OnTouchListener mTouchListener = new View.OnTouchListener() {
+    private CustomPopup customPopup;
+    private float touchX;
+    private float touchY;
+
+    private View.OnTouchListener touchListener = new View.OnTouchListener() {
         @Override
         public boolean onTouch(View v, MotionEvent event) {
             if (event.getAction() == MotionEvent.ACTION_DOWN) {
                 Logger.debug("ContentViewHolder", "onTouch: " + event);
-                mTouchX = event.getRawX();
-                mTouchY = event.getRawY();
+                touchX = event.getRawX();
+                touchY = event.getRawY();
             }
             return false;
         }
     };
 
-    private View.OnTouchListener mDispatchTouchListener = new View.OnTouchListener() {
+    private View.OnTouchListener dispatchTouchListener = new View.OnTouchListener() {
         @Override
         public boolean onTouch(View v, MotionEvent event) {
 
@@ -53,7 +54,7 @@ public class CardAdapter extends RecyclerView.Adapter<CardAdapter.ViewHolder> {
 
                 case MotionEvent.ACTION_UP:
                 case MotionEvent.ACTION_MOVE:
-                    return mCustomPopup.isShowing() && mCustomPopup.dispatchTouchEvent(event);
+                    return customPopup.isShowing() && customPopup.dispatchTouchEvent(event);
 
                 default:
                     return false;
@@ -63,23 +64,21 @@ public class CardAdapter extends RecyclerView.Adapter<CardAdapter.ViewHolder> {
 
     public static class ViewHolder extends RecyclerView.ViewHolder {
 
-        public CardView mCardView;
+        public CardView cardView;
 
         public ViewHolder(CardView v) {
             super(v);
-            mCardView = v;
+            cardView = v;
         }
     }
 
     // Provide a suitable constructor (depends on the kind of dataSet)
     public CardAdapter(String[] dataSet, ScrollType scrollType) {
-        mDataSet = dataSet;
-        mScrollType = scrollType;
+        this.dataSet = dataSet;
+        this.scrollType = scrollType;
     }
 
-    public CardAdapter(String[] dataSet) {
-        this(dataSet, ScrollType.VERTICAL);
-    }
+    public CardAdapter(String[] dataSet) { this(dataSet, ScrollType.VERTICAL); }
 
     // Create new views (invoked by the layout manager)
     @Override
@@ -90,7 +89,7 @@ public class CardAdapter extends RecyclerView.Adapter<CardAdapter.ViewHolder> {
     }
 
     private int getItemRes() {
-        switch (mScrollType) {
+        switch (scrollType) {
 
             case HORIZONTAL:
                 return R.layout.card_item_h;
@@ -109,8 +108,8 @@ public class CardAdapter extends RecyclerView.Adapter<CardAdapter.ViewHolder> {
     public void onBindViewHolder(final ViewHolder viewHolder, int position) {
         // - get element from your dataset at this position
         // - replace the contents of the view with that element
-        ((TextView) viewHolder.mCardView.findViewById(R.id.info_text)).setText(mDataSet[position]);
-        viewHolder.itemView.setOnTouchListener(mTouchListener);
+        ((TextView) viewHolder.cardView.findViewById(R.id.info_text)).setText(dataSet[position]);
+        viewHolder.itemView.setOnTouchListener(touchListener);
         viewHolder.itemView.setOnLongClickListener(new View.OnLongClickListener() {
             @Override
             public boolean onLongClick(View v) {
@@ -120,25 +119,25 @@ public class CardAdapter extends RecyclerView.Adapter<CardAdapter.ViewHolder> {
     }
 
     @Override
-    public int getItemCount() { return mDataSet.length; }
+    public int getItemCount() { return dataSet.length; }
 
     protected boolean onLongClick(final View v) {
 
         final Context applicationContext = v.getContext().getApplicationContext();
 
-        mCustomPopup = getPopup(v.getContext());
+        customPopup = getPopup(v.getContext());
         // Displaying the popup at the specified location, + offsets.
-        if (!mCustomPopup.show(mTouchX, mTouchY)) {
+        if (!customPopup.show(touchX, touchY)) {
             return false;
         }
 
         // After a long click, dispatch down and move actions to the popup
-        v.setOnTouchListener(mDispatchTouchListener);
+        v.setOnTouchListener(dispatchTouchListener);
 
         // Prevent parent and its ancestors to intercept touch events
         v.getParent().requestDisallowInterceptTouchEvent(true);
 
-        mCustomPopup.setResultListener(new CustomPopup.OnDismissListener() {
+        customPopup.setResultListener(new CustomPopup.OnDismissListener() {
 
             @Override
             public void onDismiss(@IdRes int viewId) {
@@ -165,7 +164,7 @@ public class CardAdapter extends RecyclerView.Adapter<CardAdapter.ViewHolder> {
 
             private void resetTouch() {
                 // Reset touch Listener
-                v.setOnTouchListener(mTouchListener);
+                v.setOnTouchListener(touchListener);
                 // Allow parent and its ancestors to intercept touch events
                 v.getParent().requestDisallowInterceptTouchEvent(false);
 
@@ -183,17 +182,17 @@ public class CardAdapter extends RecyclerView.Adapter<CardAdapter.ViewHolder> {
      */
     private CustomPopup getPopup(Context context) {
 
-        if (mCustomPopup == null) {
+        if (customPopup == null) {
             // Creating and add the view to the Windows manager
-            mCustomPopup = new CustomPopup(context);
+            customPopup = new CustomPopup(context);
             ((Activity) context).getWindowManager()
-                    .addView(mCustomPopup,
+                    .addView(customPopup,
                             new WindowManager.LayoutParams(
                                     WindowManager.LayoutParams.TYPE_APPLICATION_PANEL,
                                     WindowManager.LayoutParams.FLAG_SPLIT_TOUCH,
                                     PixelFormat.TRANSPARENT
                             ));
         }
-        return mCustomPopup;
+        return customPopup;
     }
 }

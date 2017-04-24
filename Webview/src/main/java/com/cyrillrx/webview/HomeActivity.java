@@ -2,7 +2,7 @@ package com.cyrillrx.webview;
 
 import android.content.Intent;
 import android.os.Bundle;
-import android.support.v7.app.ActionBarActivity;
+import android.support.v7.app.AppCompatActivity;
 import android.view.View;
 import android.widget.EditText;
 
@@ -11,7 +11,7 @@ import com.cyrillrx.webview.utils.IntentKey;
 /**
  * Created on 03/11/14.
  */
-public class HomeActivity extends ActionBarActivity implements View.OnClickListener {
+public class HomeActivity extends AppCompatActivity implements View.OnClickListener {
 
     private EditText mEtVideoUri;
 

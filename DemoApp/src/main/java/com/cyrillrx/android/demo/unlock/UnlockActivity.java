@@ -1,7 +1,7 @@
 package com.cyrillrx.android.demo.unlock;
 
 import android.os.Bundle;
-import android.support.v7.app.ActionBarActivity;
+import android.support.v7.app.AppCompatActivity;
 import android.view.MotionEvent;
 import android.view.View;
 import android.widget.ProgressBar;
@@ -14,14 +14,14 @@ import com.cyrillrx.android.toolbox.CountDownTimer;
 /**
  * Created on 02/10/2014.
  */
-public class UnlockActivity extends ActionBarActivity implements View.OnTouchListener, CompletionListener {
+public class UnlockActivity extends AppCompatActivity implements View.OnTouchListener, CompletionListener {
 
     private static final int DURATION_MS = 1000;
     private static final long STEP_MS = 10;
 
-    private CountDownProgress mTimerLeft;
-    private CountDownProgress mTimerMiddle;
-    private CountDownProgress mTimerRight;
+    private CountDownProgress timerLeft;
+    private CountDownProgress timerMiddle;
+    private CountDownProgress timerRight;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -33,9 +33,9 @@ public class UnlockActivity extends ActionBarActivity implements View.OnTouchLis
         ProgressBar lock2 = (ProgressBar) findViewById(R.id.pb_lock_2);
         ProgressBar lock3 = (ProgressBar) findViewById(R.id.pb_lock_3);
 
-        mTimerLeft = new CountDownProgress(DURATION_MS, STEP_MS, lock1, this);
-        mTimerMiddle = new CountDownProgress(DURATION_MS, STEP_MS, lock2, this);
-        mTimerRight = new CountDownProgress(DURATION_MS, STEP_MS, lock3, this);
+        timerLeft = new CountDownProgress(DURATION_MS, STEP_MS, lock1, this);
+        timerMiddle = new CountDownProgress(DURATION_MS, STEP_MS, lock2, this);
+        timerRight = new CountDownProgress(DURATION_MS, STEP_MS, lock3, this);
 
         findViewById(android.R.id.background).setOnTouchListener(this);
         lock1.setOnTouchListener(this);
@@ -45,7 +45,7 @@ public class UnlockActivity extends ActionBarActivity implements View.OnTouchLis
 
     @Override
     public void onCompleted() {
-        if (mTimerLeft.isComplete() && mTimerMiddle.isComplete() && mTimerRight.isComplete()) {
+        if (timerLeft.isComplete() && timerMiddle.isComplete() && timerRight.isComplete()) {
             Toast.makeText(getApplicationContext(), "All done !", Toast.LENGTH_SHORT).show();
         }
     }
@@ -69,15 +69,15 @@ public class UnlockActivity extends ActionBarActivity implements View.OnTouchLis
 
         switch (viewId) {
             case R.id.pb_lock_1:
-                mTimerLeft.startFilling(pointerId);
+                timerLeft.startFilling(pointerId);
                 return true;
 
             case R.id.pb_lock_2:
-                mTimerMiddle.startFilling(pointerId);
+                timerMiddle.startFilling(pointerId);
                 return true;
 
             case R.id.pb_lock_3:
-                mTimerRight.startFilling(pointerId);
+                timerRight.startFilling(pointerId);
                 return true;
 
             default:
@@ -91,15 +91,15 @@ public class UnlockActivity extends ActionBarActivity implements View.OnTouchLis
 
         switch (viewId) {
             case R.id.pb_lock_1:
-                mTimerLeft.startEmptying(pointerId);
+                timerLeft.startEmptying(pointerId);
                 return true;
 
             case R.id.pb_lock_2:
-                mTimerMiddle.startEmptying(pointerId);
+                timerMiddle.startEmptying(pointerId);
                 return true;
 
             case R.id.pb_lock_3:
-                mTimerRight.startEmptying(pointerId);
+                timerRight.startEmptying(pointerId);
                 return true;
 
             default:

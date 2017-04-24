@@ -17,7 +17,7 @@ public class PopupActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.layout_popup_fullscreen);
 
-        View view = findViewById(R.id.popup);
+        final View view = findViewById(R.id.popup);
         if (!view.requestFocus()) {
             Toast.makeText(getApplicationContext(), "requestFocus failed", Toast.LENGTH_SHORT).show();
         } else {
@@ -32,9 +32,7 @@ public class PopupActivity extends AppCompatActivity {
     }
 
     @Override
-    public boolean onTouchEvent(MotionEvent event) {
-        return super.onTouchEvent(event);
-    }
+    public boolean onTouchEvent(MotionEvent event) { return super.onTouchEvent(event); }
 
     @Override
     public boolean onGenericMotionEvent(MotionEvent event) {

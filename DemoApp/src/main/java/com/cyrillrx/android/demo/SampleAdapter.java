@@ -15,8 +15,8 @@ import java.util.List;
  */
 public class SampleAdapter extends RecyclerView.Adapter<SampleAdapter.ViewHolder> {
 
-    private Context mContext;
-    private List<Sample> mSamples;
+    private Context context;
+    private List<Sample> samples;
 
     public static class ViewHolder extends RecyclerView.ViewHolder {
 
@@ -33,8 +33,8 @@ public class SampleAdapter extends RecyclerView.Adapter<SampleAdapter.ViewHolder
     }
 
     public SampleAdapter(Context context, List<Sample> samples) {
-        mContext = context;
-        mSamples = samples;
+        this.context = context;
+        this.samples = samples;
     }
 
     @Override
@@ -46,20 +46,20 @@ public class SampleAdapter extends RecyclerView.Adapter<SampleAdapter.ViewHolder
     @Override
     public void onBindViewHolder(ViewHolder holder, int position) {
 
-        final Sample sample = mSamples.get(position);
+        final Sample sample = samples.get(position);
         holder.tvTitle.setText(sample.getTitle());
         holder.tvSubtitle.setText(sample.getSubtitle());
 
         holder.root.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                mContext.startActivity(new Intent(mContext.getApplicationContext(), sample.getClazz()));
+                context.startActivity(new Intent(context.getApplicationContext(), sample.getClazz()));
             }
         });
     }
 
     @Override
     public int getItemCount() {
-        return mSamples.size();
+        return samples.size();
     }
 }

@@ -13,11 +13,7 @@ import com.cyrillrx.android.demo.R;
  */
 public class CardListActivity extends AppCompatActivity {
 
-    private RecyclerView mRecyclerView;
-    private RecyclerView.Adapter mAdapter;
-    private LinearLayoutManager mLayoutManager;
-
-    private String[] mDataSet = new String[]{
+    private String[] dataSet = new String[]{
             "TOTO", "TATA", "TUTU",
             "TOTO", "TATA", "TUTU",
             "TOTO", "TATA", "TUTU",
@@ -31,18 +27,18 @@ public class CardListActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_card_list_v);
 
-        mRecyclerView = (RecyclerView) findViewById(R.id.my_recycler_view);
+        final RecyclerView recyclerView = (RecyclerView) findViewById(R.id.my_recycler_view);
 
         // use this setting to improve performance if you know that changes
         // in content do not change the layout size of the RecyclerView
-        mRecyclerView.setHasFixedSize(true);
+        recyclerView.setHasFixedSize(true);
 
         // use a linear layout manager
-        mLayoutManager = new LinearLayoutManager(this);
-        mRecyclerView.setLayoutManager(mLayoutManager);
+        final LinearLayoutManager layoutManager = new LinearLayoutManager(this);
+        recyclerView.setLayoutManager(layoutManager);
 
         // specify an adapter
-        mAdapter = new CardAdapter(mDataSet);
-        mRecyclerView.setAdapter(mAdapter);
+        final RecyclerView.Adapter adapter = new CardAdapter(dataSet);
+        recyclerView.setAdapter(adapter);
     }
 }

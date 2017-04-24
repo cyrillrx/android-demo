@@ -2,7 +2,7 @@ package com.cyrillrx.android.demo.actionbar;
 
 import android.graphics.drawable.ColorDrawable;
 import android.os.Bundle;
-import android.support.v7.app.ActionBarActivity;
+import android.support.v7.app.AppCompatActivity;
 import android.widget.ScrollView;
 
 import com.cyrillrx.android.component.scroll.ObservableScrollView;
@@ -13,7 +13,7 @@ import com.cyrillrx.android.demo.R;
  * @author Cyril Leroux
  *         Created 22/11/2014.
  */
-public class FadingActionBarActivity extends ActionBarActivity implements OnScrollChangedListener {
+public class FadingActionBarActivity extends AppCompatActivity implements OnScrollChangedListener {
 
     @Override
     public void onCreate(Bundle savedInstanceState) {
@@ -21,7 +21,7 @@ public class FadingActionBarActivity extends ActionBarActivity implements OnScro
         setContentView(R.layout.activity_fading_action_bar);
         setAlpha(0);
 
-        ObservableScrollView scrollView = (ObservableScrollView) findViewById(R.id.scroll_view);
+        final ObservableScrollView scrollView = (ObservableScrollView) findViewById(R.id.scroll_view);
         scrollView.setOnScrollChangedListener(this);
     }
 
@@ -31,7 +31,7 @@ public class FadingActionBarActivity extends ActionBarActivity implements OnScro
     }
 
     private void setAlpha(int alpha) {
-        ColorDrawable color = new ColorDrawable();
+        final ColorDrawable color = new ColorDrawable();
         color.setColor(getResources().getColor(R.color.nav_primary));
         color.setAlpha(alpha);
         getSupportActionBar().setBackgroundDrawable(color);

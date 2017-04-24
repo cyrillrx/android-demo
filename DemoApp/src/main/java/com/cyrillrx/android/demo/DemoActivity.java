@@ -1,7 +1,7 @@
 package com.cyrillrx.android.demo;
 
 import android.os.Bundle;
-import android.support.v7.app.ActionBarActivity;
+import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
 
@@ -19,7 +19,7 @@ import com.cyrillrx.android.toolbox.Logger;
 import java.util.ArrayList;
 import java.util.List;
 
-public class DemoActivity extends ActionBarActivity {
+public class DemoActivity extends AppCompatActivity {
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {

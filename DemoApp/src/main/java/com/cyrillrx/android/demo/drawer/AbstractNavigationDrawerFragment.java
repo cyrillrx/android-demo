@@ -5,7 +5,7 @@ import android.app.Fragment;
 import android.os.Bundle;
 import android.support.v4.widget.DrawerLayout;
 import android.support.v7.app.ActionBar;
-import android.support.v7.app.ActionBarActivity;
+import android.support.v7.app.AppCompatActivity;
 import android.view.Gravity;
 import android.view.Menu;
 import android.view.MenuInflater;
@@ -30,14 +30,14 @@ public abstract class AbstractNavigationDrawerFragment extends Fragment {
     /**
      * A pointer to the current callbacks instance (the Activity).
      */
-    protected NavigationDrawerCallbacks mCallbacks;
+    protected NavigationDrawerCallbacks callbacks;
 
-    protected DrawerLayout mDrawerLayout;
-    protected ListView mDrawerListView;
-    protected View mFragmentContainerView;
+    protected DrawerLayout drawerLayout;
+    protected ListView drawerListView;
+    protected View fragmentContainerView;
 
-    protected int mCurrentSelectedPosition = 0;
-    protected boolean mFromSavedInstanceState;
+    protected int currentSelectedPosition = 0;
+    protected boolean fromSavedInstanceState;
 
     public AbstractNavigationDrawerFragment() { }
 
@@ -46,19 +46,19 @@ public abstract class AbstractNavigationDrawerFragment extends Fragment {
         super.onCreate(savedInstanceState);
 
         if (savedInstanceState != null) {
-            mCurrentSelectedPosition = savedInstanceState.getInt(STATE_SELECTED_POSITION);
-            mFromSavedInstanceState = true;
+            currentSelectedPosition = savedInstanceState.getInt(STATE_SELECTED_POSITION);
+            fromSavedInstanceState = true;
         }
 
         // Select either the default item (0) or the last selected item.
-        selectItem(mCurrentSelectedPosition);
+        selectItem(currentSelectedPosition);
     }
 
     @Override
     public void onAttach(Activity activity) {
         super.onAttach(activity);
         try {
-            mCallbacks = (NavigationDrawerCallbacks) activity;
+            callbacks = (NavigationDrawerCallbacks) activity;
         } catch (ClassCastException e) {
             throw new ClassCastException("Activity must implement NavigationDrawerCallbacks.");
         }
@@ -67,7 +67,7 @@ public abstract class AbstractNavigationDrawerFragment extends Fragment {
     @Override
     public void onDetach() {
         super.onDetach();
-        mCallbacks = null;
+        callbacks = null;
     }
 
     @Override
@@ -80,14 +80,14 @@ public abstract class AbstractNavigationDrawerFragment extends Fragment {
     @Override
     public void onSaveInstanceState(Bundle outState) {
         super.onSaveInstanceState(outState);
-        outState.putInt(STATE_SELECTED_POSITION, mCurrentSelectedPosition);
+        outState.putInt(STATE_SELECTED_POSITION, currentSelectedPosition);
     }
 
     @Override
     public void onCreateOptionsMenu(Menu menu, MenuInflater inflater) {
         // If the drawer is open, show the global app actions in the action bar. See also
         // showGlobalContextActionBar, which controls the top-left area of the action bar.
-        if (mDrawerLayout != null && isDrawerOpen()) {
+        if (drawerLayout != null && isDrawerOpen()) {
             inflater.inflate(R.menu.global, menu);
             showGlobalContextActionBar();
         }
@@ -98,14 +98,14 @@ public abstract class AbstractNavigationDrawerFragment extends Fragment {
     public boolean onOptionsItemSelected(MenuItem item) {
 
         if (item.getItemId() == R.id.action_example) {
-            if (mDrawerLayout.isDrawerVisible(Gravity.END)) {
-                mDrawerLayout.closeDrawer(Gravity.END);
+            if (drawerLayout.isDrawerVisible(Gravity.END)) {
+                drawerLayout.closeDrawer(Gravity.END);
             } else {
                 // Close the left drawer if necessary
-                if (mDrawerLayout.isDrawerVisible(Gravity.START)) {
-                    mDrawerLayout.closeDrawer(Gravity.START);
+                if (drawerLayout.isDrawerVisible(Gravity.START)) {
+                    drawerLayout.closeDrawer(Gravity.START);
                 }
-                mDrawerLayout.openDrawer(Gravity.END);
+                drawerLayout.openDrawer(Gravity.END);
             }
             return true;
         }
@@ -114,7 +114,7 @@ public abstract class AbstractNavigationDrawerFragment extends Fragment {
     }
 
     public boolean isDrawerOpen() {
-        return mDrawerLayout != null && mDrawerLayout.isDrawerOpen(mFragmentContainerView);
+        return drawerLayout != null && drawerLayout.isDrawerOpen(fragmentContainerView);
     }
 
     protected abstract void selectItem(int position);
@@ -135,13 +135,13 @@ public abstract class AbstractNavigationDrawerFragment extends Fragment {
      * @return The action bar activity.
      */
     protected ActionBar getActionBar() {
-        return ((ActionBarActivity) getActivity()).getSupportActionBar();
+        return ((AppCompatActivity) getActivity()).getSupportActionBar();
     }
 
     /**
      * Callbacks interface that all activities using this fragment must implement.
      */
-    public static interface NavigationDrawerCallbacks {
+    public interface NavigationDrawerCallbacks {
 
         /**
          * Called when an item in the navigation drawer is selected.

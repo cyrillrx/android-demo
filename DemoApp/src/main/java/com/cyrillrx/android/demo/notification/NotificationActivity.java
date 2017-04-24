@@ -7,7 +7,7 @@ import android.os.Bundle;
 import android.os.Handler;
 import android.support.v4.app.NotificationCompat;
 import android.support.v4.app.NotificationManagerCompat;
-import android.support.v7.app.ActionBarActivity;
+import android.support.v7.app.AppCompatActivity;
 import android.view.View;
 import android.widget.Toast;
 
@@ -18,7 +18,7 @@ import com.cyrillrx.android.demo.R;
  * @author Cyril Leroux
  *         Created 07/02/2015.
  */
-public class NotificationActivity extends ActionBarActivity implements View.OnClickListener {
+public class NotificationActivity extends AppCompatActivity implements View.OnClickListener {
 
     private static final int REQUEST_CODE = 13;
 
@@ -122,6 +122,5 @@ public class NotificationActivity extends ActionBarActivity implements View.OnCl
         final NotificationManagerCompat manager = NotificationManagerCompat.from(this);
         manager.notify(BLINKING_NOTIFICATION_ID, builder.build());
     }
-
 
 }

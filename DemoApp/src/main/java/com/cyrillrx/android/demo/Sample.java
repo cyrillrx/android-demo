@@ -6,19 +6,19 @@ package com.cyrillrx.android.demo;
  */
 public class Sample {
 
-    private String mTitle;
-    private String mSubtitle;
-    private Class mClazz;
+    private String title;
+    private String subtitle;
+    private Class clazz;
 
     public Sample(String title, String subtitle, Class clazz) {
-        mTitle = title;
-        mSubtitle = subtitle;
-        mClazz = clazz;
+        this.title = title;
+        this.subtitle = subtitle;
+        this.clazz = clazz;
     }
 
-    public String getTitle() { return mTitle; }
+    public String getTitle() { return title; }
 
-    public String getSubtitle() { return mSubtitle; }
+    public String getSubtitle() { return subtitle; }
 
-    public Class getClazz() { return mClazz; }
+    public Class getClazz() { return clazz; }
 }

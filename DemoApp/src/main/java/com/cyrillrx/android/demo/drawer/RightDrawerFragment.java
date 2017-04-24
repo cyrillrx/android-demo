@@ -18,14 +18,14 @@ public class RightDrawerFragment extends AbstractNavigationDrawerFragment {
 
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
-        mDrawerListView = (ListView) inflater.inflate(R.layout.fragment_navigation_drawer, container, false);
-        mDrawerListView.setOnItemClickListener(new AdapterView.OnItemClickListener() {
+        drawerListView = (ListView) inflater.inflate(R.layout.fragment_navigation_drawer, container, false);
+        drawerListView.setOnItemClickListener(new AdapterView.OnItemClickListener() {
             @Override
             public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
                 selectItem(position);
             }
         });
-        mDrawerListView.setAdapter(new ArrayAdapter<>(
+        drawerListView.setAdapter(new ArrayAdapter<>(
                 getActivity(),
                 android.R.layout.simple_list_item_activated_1,
                 android.R.id.text1,
@@ -34,8 +34,8 @@ public class RightDrawerFragment extends AbstractNavigationDrawerFragment {
                         getString(R.string.title_section_right_2),
                         getString(R.string.title_section_right_3),
                 }));
-        mDrawerListView.setItemChecked(mCurrentSelectedPosition, true);
-        return mDrawerListView;
+        drawerListView.setItemChecked(currentSelectedPosition, true);
+        return drawerListView;
     }
 
     /**
@@ -45,25 +45,25 @@ public class RightDrawerFragment extends AbstractNavigationDrawerFragment {
      * @param drawerLayout The DrawerLayout containing this fragment's UI.
      */
     public void setUp(int fragmentId, DrawerLayout drawerLayout) {
-        mFragmentContainerView = getActivity().findViewById(fragmentId);
-        mDrawerLayout = drawerLayout;
+        fragmentContainerView = getActivity().findViewById(fragmentId);
+        this.drawerLayout = drawerLayout;
 
         // set a custom shadow that overlays the main content when the drawer opens
-        mDrawerLayout.setDrawerShadow(R.drawable.drawer_shadow_right, Gravity.END);
+        this.drawerLayout.setDrawerShadow(R.drawable.drawer_shadow_right, Gravity.END);
         // set up the drawer's list view with items and click listener
     }
 
     @Override
     protected void selectItem(int position) {
-        mCurrentSelectedPosition = position;
-        if (mDrawerListView != null) {
-            mDrawerListView.setItemChecked(position, true);
+        currentSelectedPosition = position;
+        if (drawerListView != null) {
+            drawerListView.setItemChecked(position, true);
         }
-        if (mDrawerLayout != null) {
-            mDrawerLayout.closeDrawer(mFragmentContainerView);
+        if (drawerLayout != null) {
+            drawerLayout.closeDrawer(fragmentContainerView);
         }
-        if (mCallbacks != null) {
-            mCallbacks.onNavigationDrawerItemSelected(position + 200);
+        if (callbacks != null) {
+            callbacks.onNavigationDrawerItemSelected(position + 200);
         }
     }
 }

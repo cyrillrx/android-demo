@@ -4,15 +4,14 @@ import android.content.res.Configuration;
 import android.media.MediaPlayer;
 import android.net.Uri;
 import android.os.Bundle;
-import android.support.v7.app.ActionBarActivity;
+import android.support.v7.app.AppCompatActivity;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.widget.VideoView;
 
 import com.cyrillrx.raspwatcher.utils.IntentKey;
 
-
-public class WatchActivity extends ActionBarActivity {
+public class WatchActivity extends AppCompatActivity {
 
     private VideoView mVideoView;
 

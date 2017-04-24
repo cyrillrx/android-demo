@@ -14,8 +14,8 @@ import android.widget.LinearLayout;
  */
 public class PopLayout extends LinearLayout {
 
-    private float mTouchX;
-    private float mTouchY;
+    private float touchX;
+    private float touchY;
 
     public PopLayout(Context context) {
         super(context);
@@ -43,8 +43,8 @@ public class PopLayout extends LinearLayout {
     public boolean onTouchEvent(MotionEvent event) {
         if (event.getAction() == MotionEvent.ACTION_DOWN
                 || event.getAction() == MotionEvent.ACTION_MOVE) {
-            setX(event.getRawX() - getWidth() /2f);
-            setY(event.getRawY() - getHeight() /2f);
+            setX(event.getRawX() - getWidth() / 2f);
+            setY(event.getRawY() - getHeight() / 2f);
         }
         return super.onTouchEvent(event);
     }
