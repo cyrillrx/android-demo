@@ -28,7 +28,7 @@ public class HorizontalCardGridActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_card_list_h);
 
-        final RecyclerView recyclerView = (RecyclerView) findViewById(R.id.my_recycler_view);
+        final RecyclerView recyclerView = (RecyclerView) findViewById(R.id.recycler_view);
 
         // use this setting to improve performance if you know that changes
         // in content do not change the layout size of the RecyclerView
@@ -40,7 +40,7 @@ public class HorizontalCardGridActivity extends AppCompatActivity {
         recyclerView.setLayoutManager(layoutManager);
 
         // specify an adapter
-        final RecyclerView.Adapter adapter = new CardAdapter(dataSet, CardAdapter.ScrollType.GRID);
+        final RecyclerView.Adapter adapter = new CardAdapter(dataSet, CardAdapter.ScrollType.HORIZONTAL);
         recyclerView.setAdapter(adapter);
     }
 }

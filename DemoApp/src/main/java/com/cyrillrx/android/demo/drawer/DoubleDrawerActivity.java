@@ -35,7 +35,7 @@ public class DoubleDrawerActivity extends AppCompatActivity
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_double_nav);
 
-        final Toolbar toolbar = (Toolbar) findViewById(R.id.custom_toolbar);
+        final Toolbar toolbar = (Toolbar) findViewById(R.id.toolbar);
         setSupportActionBar(toolbar);
 
         title = getTitle();

@@ -24,7 +24,7 @@ import com.cyrillrx.android.toolbox.Logger;
  */
 public class CardAdapter extends RecyclerView.Adapter<CardAdapter.ViewHolder> {
 
-    public enum ScrollType {HORIZONTAL, VERTICAL, GRID}
+    public enum ScrollType {HORIZONTAL, VERTICAL}
 
     private String[] dataSet;
     private ScrollType scrollType;
@@ -97,7 +97,6 @@ public class CardAdapter extends RecyclerView.Adapter<CardAdapter.ViewHolder> {
             case VERTICAL:
                 return R.layout.card_item_v;
 
-            // Grid
             default:
                 return R.layout.card_item;
         }

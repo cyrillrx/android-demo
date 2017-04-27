@@ -1,14 +1,12 @@
 <?xml version="1.0" encoding="utf-8"?>
 
 <!-- A DrawerLayout is intended to be used as the top-level content view using match_parent for both width and height to consume the full space available. -->
-<android.support.v4.widget.DrawerLayout
-    android:id="@+id/drawer_layout"
+<android.support.v4.widget.DrawerLayout android:id="@+id/drawer_layout"
     xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
-    android:layout_height="match_parent"
-    tools:context=".MyActivity">
+    android:layout_height="match_parent">
 
     <!-- Your normal content view -->
     <LinearLayout
@@ -18,7 +16,7 @@
 
         <!-- We use a Toolbar so that our drawer can be displayed in front of the action bar -->
         <android.support.v7.widget.Toolbar
-            android:id="@+id/custom_toolbar"
+            android:id="@+id/toolbar"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_marginTop="@dimen/status_bar_height"

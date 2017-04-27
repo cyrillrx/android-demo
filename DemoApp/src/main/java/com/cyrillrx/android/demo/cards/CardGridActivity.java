@@ -31,7 +31,7 @@ public class CardGridActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_card_list);
 
-        recyclerView = (RecyclerView) findViewById(R.id.my_recycler_view);
+        recyclerView = (RecyclerView) findViewById(R.id.recycler_view);
 
         // use this setting to improve performance if you know that changes
         // in content do not change the layout size of the RecyclerView
@@ -42,7 +42,7 @@ public class CardGridActivity extends AppCompatActivity {
         recyclerView.setLayoutManager(layoutManager);
 
         // specify an adapter
-        adapter = new CardAdapter(dataSet, CardAdapter.ScrollType.GRID);
+        adapter = new CardAdapter(dataSet, CardAdapter.ScrollType.VERTICAL);
         recyclerView.setAdapter(adapter);
     }
 }
