@@ -11,6 +11,7 @@
     <string name="title_horizontal_card_list">Horizontal card list</string>
     <string name="title_vertical_card_grid">Vertical card grid</string>
     <string name="title_horizontal_card_grid">Horizontal card grid</string>
+    <string name="title_bottom_nav">Bottom Nav</string>
     <string name="title_notification">Notification</string>
 
     <string name="title_section_left_1">Section Left 1</string>

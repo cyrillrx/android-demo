@@ -37,6 +37,7 @@ public class DemoActivity extends AppCompatActivity {
         samples.add(new Sample("Horizontal List", "A horizontal card list using RecycleView and CardView.", HorizontalCardListActivity.class));
         samples.add(new Sample("Vertical Grid", "A vertical card grid using RecycleView and CardView.", CardGridActivity.class));
         samples.add(new Sample("Horizontal Grid", "A horizontal card grid using RecycleView and CardView.", HorizontalCardGridActivity.class));
+        samples.add(new Sample("Bottom nav", "", BottomNavActivity.class));
         samples.add(new Sample("Notification", "Display a simple notification.", NotificationActivity.class));
 
         RecyclerView recyclerView = (RecyclerView) findViewById(android.R.id.list);
