@@ -4,6 +4,7 @@ import android.app.Activity;
 import android.content.Context;
 import android.graphics.PixelFormat;
 import android.support.annotation.IdRes;
+import android.support.annotation.NonNull;
 import android.support.v7.widget.CardView;
 import android.support.v7.widget.RecyclerView;
 import android.view.LayoutInflater;
@@ -16,7 +17,7 @@ import android.widget.Toast;
 
 import com.cyrillrx.android.demo.CustomPopup;
 import com.cyrillrx.android.demo.R;
-import com.cyrillrx.android.toolbox.Logger;
+import com.cyrillrx.logger.Logger;
 
 /**
  * @author Cyril Leroux
@@ -81,8 +82,9 @@ public class CardAdapter extends RecyclerView.Adapter<CardAdapter.ViewHolder> {
     public CardAdapter(String[] dataSet) { this(dataSet, ScrollType.VERTICAL); }
 
     // Create new views (invoked by the layout manager)
+    @NonNull
     @Override
-    public ViewHolder onCreateViewHolder(ViewGroup parent, int viewType) {
+    public ViewHolder onCreateViewHolder(@NonNull ViewGroup parent, int viewType) {
         View v = LayoutInflater.from(parent.getContext()).inflate(getItemRes(), parent, false);
         //TODO Set the view's size, margins, paddings and layout parameters here
         return new ViewHolder((CardView) v);
@@ -104,7 +106,7 @@ public class CardAdapter extends RecyclerView.Adapter<CardAdapter.ViewHolder> {
 
     // Replace the contents of a view (invoked by the layout manager)
     @Override
-    public void onBindViewHolder(final ViewHolder viewHolder, int position) {
+    public void onBindViewHolder(@NonNull final ViewHolder viewHolder, int position) {
         // - get element from your dataset at this position
         // - replace the contents of the view with that element
         ((TextView) viewHolder.cardView.findViewById(R.id.info_text)).setText(dataSet[position]);

@@ -23,12 +23,11 @@ public class BottomNavActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_bottom_nav);
 
-        textFavorites = (TextView) findViewById(R.id.text_favorites);
-        textSchedules = (TextView) findViewById(R.id.text_schedules);
-        textMusic = (TextView) findViewById(R.id.text_music);
+        textFavorites = findViewById(R.id.text_favorites);
+        textSchedules = findViewById(R.id.text_schedules);
+        textMusic = findViewById(R.id.text_music);
 
-        BottomNavigationView bottomNavigationView = (BottomNavigationView)
-                findViewById(R.id.bottom_navigation);
+        BottomNavigationView bottomNavigationView = findViewById(R.id.bottom_navigation);
 
         bottomNavigationView.setOnNavigationItemSelectedListener(
                 new BottomNavigationView.OnNavigationItemSelectedListener() {

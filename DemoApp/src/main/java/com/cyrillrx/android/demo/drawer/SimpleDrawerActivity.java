@@ -38,7 +38,7 @@ public class SimpleDrawerActivity extends AppCompatActivity
         navigationDrawerFragment = (NavigationDrawerFragment) getFragmentManager().findFragmentById(R.id.navigation_drawer);
 
         // Set up the drawer.
-        final DrawerLayout drawerLayout = (DrawerLayout) findViewById(R.id.drawer_layout);
+        final DrawerLayout drawerLayout = findViewById(R.id.drawer_layout);
         navigationDrawerFragment.setUp(R.id.navigation_drawer, drawerLayout);
     }
 

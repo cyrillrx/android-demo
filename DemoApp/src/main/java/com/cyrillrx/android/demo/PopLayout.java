@@ -17,12 +17,9 @@ public class PopLayout extends LinearLayout {
     private float touchX;
     private float touchY;
 
-    public PopLayout(Context context) {
-        super(context);
-    }
+    public PopLayout(Context context) { super(context); }
 
-    public PopLayout(Context context, AttributeSet attrs) {
-        super(context, attrs);
+    public PopLayout(Context context, AttributeSet attrs) { super(context, attrs);
     }
 
     public PopLayout(Context context, AttributeSet attrs, int defStyleAttr) {

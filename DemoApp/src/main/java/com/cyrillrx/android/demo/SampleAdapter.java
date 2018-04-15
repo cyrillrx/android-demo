@@ -27,8 +27,8 @@ public class SampleAdapter extends RecyclerView.Adapter<SampleAdapter.ViewHolder
         public ViewHolder(View view) {
             super(view);
             root = view;
-            tvTitle = (TextView) view.findViewById(android.R.id.text1);
-            tvSubtitle = (TextView) view.findViewById(android.R.id.text2);
+            tvTitle = view.findViewById(android.R.id.text1);
+            tvSubtitle = view.findViewById(android.R.id.text2);
         }
     }
 

@@ -5,7 +5,7 @@ android {
     buildToolsVersion project.buildToolsVersion
 
     defaultConfig {
-        applicationId project.GROUP + ".kitkattv"
+        applicationId "com.cyrillrx.kitkattv"
         minSdkVersion project.minSdkVersion
         targetSdkVersion project.targetSdkVersion
         versionCode 1
@@ -26,6 +26,6 @@ android {
 }
 
 dependencies {
-    compile 'com.android.support:appcompat-v7:25.3.1'
-    compile 'com.android.support:leanback-v17:25.3.1'
+    implementation "com.android.support:appcompat-v7:$supportLibVersion"
+    implementation "com.android.support:leanback-v17:$supportLibVersion"
 }

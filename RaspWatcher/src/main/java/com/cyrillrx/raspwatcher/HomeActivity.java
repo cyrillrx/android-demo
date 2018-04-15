@@ -14,6 +14,7 @@ import com.cyrillrx.raspwatcher.utils.IntentKey;
 public class HomeActivity extends AppCompatActivity implements View.OnClickListener {
 
     private static final String VIDEO_SAMPLE_URL = "http://techslides.com/demos/sample-videos/small.mp4";
+
     private EditText mEtVideoUri;
 
     @Override
@@ -22,7 +23,7 @@ public class HomeActivity extends AppCompatActivity implements View.OnClickListe
 
         setContentView(R.layout.activity_main);
 
-        mEtVideoUri = (EditText) findViewById(R.id.et_video_uri);
+        mEtVideoUri = findViewById(R.id.et_video_uri);
         mEtVideoUri.setText(VIDEO_SAMPLE_URL);
 
         findViewById(R.id.btn_submit).setOnClickListener(this);

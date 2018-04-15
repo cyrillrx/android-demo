@@ -14,7 +14,7 @@ import com.cyrillrx.android.demo.drawer.DoubleDrawerActivity;
 import com.cyrillrx.android.demo.drawer.SimpleDrawerActivity;
 import com.cyrillrx.android.demo.notification.NotificationActivity;
 import com.cyrillrx.android.demo.unlock.UnlockActivity;
-import com.cyrillrx.android.toolbox.Logger;
+import com.cyrillrx.logger.Logger;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -26,7 +26,7 @@ public class DemoActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_demo_home);
 
-        Logger.initialize(getApplicationContext(), BuildConfig.DEBUG);
+        Logger.initialize();
 
         final List<Sample> samples = new ArrayList<>();
         samples.add(new Sample("UnlockActivity", "Touch all the targets to complete the activity.", UnlockActivity.class));

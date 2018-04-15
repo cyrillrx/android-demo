@@ -29,9 +29,9 @@ public class UnlockActivity extends AppCompatActivity implements View.OnTouchLis
 
         setContentView(R.layout.activity_unlock);
 
-        ProgressBar lock1 = (ProgressBar) findViewById(R.id.pb_lock_1);
-        ProgressBar lock2 = (ProgressBar) findViewById(R.id.pb_lock_2);
-        ProgressBar lock3 = (ProgressBar) findViewById(R.id.pb_lock_3);
+        ProgressBar lock1 = findViewById(R.id.pb_lock_1);
+        ProgressBar lock2 = findViewById(R.id.pb_lock_2);
+        ProgressBar lock3 = findViewById(R.id.pb_lock_3);
 
         timerLeft = new CountDownProgress(DURATION_MS, STEP_MS, lock1, this);
         timerMiddle = new CountDownProgress(DURATION_MS, STEP_MS, lock2, this);
@@ -152,7 +152,7 @@ public class UnlockActivity extends AppCompatActivity implements View.OnTouchLis
             if (!mStarted) {
                 mPointerId = pointerId;
                 mClockWise = true;
-                mMillisInFuture = mMax - mProgress.getProgress();
+                millisInFuture = mMax - mProgress.getProgress();
                 start();
 
             } else if (!mClockWise) {
@@ -171,7 +171,7 @@ public class UnlockActivity extends AppCompatActivity implements View.OnTouchLis
             cancel();
             mCompleted = false;
             mClockWise = false;
-            mMillisInFuture = progress;
+            millisInFuture = progress;
             start();
         }
 

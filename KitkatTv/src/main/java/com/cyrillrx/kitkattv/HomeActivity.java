@@ -20,9 +20,9 @@ public class HomeActivity extends Activity implements View.OnClickListener {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_home);
 
-        mButton1 = (Button) findViewById(R.id.btn_browse_content);
-        mButton2 = (Button) findViewById(R.id.button2);
-        mButton3 = (Button) findViewById(R.id.button3);
+        mButton1 = findViewById(R.id.btn_browse_content);
+        mButton2 = findViewById(R.id.button2);
+        mButton3 = findViewById(R.id.button3);
 
         mButton1.setOnClickListener(this);
         mButton2.setOnClickListener(this);

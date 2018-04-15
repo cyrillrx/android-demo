@@ -35,7 +35,7 @@ public class DoubleDrawerActivity extends AppCompatActivity
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_double_nav);
 
-        final Toolbar toolbar = (Toolbar) findViewById(R.id.toolbar);
+        final Toolbar toolbar = findViewById(R.id.toolbar);
         setSupportActionBar(toolbar);
 
         title = getTitle();
@@ -43,7 +43,7 @@ public class DoubleDrawerActivity extends AppCompatActivity
         rightDrawerFragment = (RightDrawerFragment) getFragmentManager().findFragmentById(R.id.right_navigation_drawer);
 
         // Set up the drawer.
-        final DrawerLayout drawerLayout = (DrawerLayout) findViewById(R.id.drawer_layout);
+        final DrawerLayout drawerLayout = findViewById(R.id.drawer_layout);
         leftDrawerFragment.setUp(R.id.main_navigation_drawer, drawerLayout);
         rightDrawerFragment.setUp(R.id.right_navigation_drawer, drawerLayout);
     }

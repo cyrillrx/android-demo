@@ -5,9 +5,9 @@ import android.os.Bundle;
 import android.support.v7.app.AppCompatActivity;
 import android.widget.ScrollView;
 
-import com.cyrillrx.android.component.scroll.ObservableScrollView;
-import com.cyrillrx.android.component.scroll.OnScrollChangedListener;
 import com.cyrillrx.android.demo.R;
+import com.cyrillrx.android.widget.scroll.ObservableScrollView;
+import com.cyrillrx.android.widget.scroll.OnScrollChangedListener;
 
 /**
  * @author Cyril Leroux
@@ -21,7 +21,7 @@ public class FadingActionBarActivity extends AppCompatActivity implements OnScro
         setContentView(R.layout.activity_fading_action_bar);
         setAlpha(0);
 
-        final ObservableScrollView scrollView = (ObservableScrollView) findViewById(R.id.scroll_view);
+        final ObservableScrollView scrollView = findViewById(R.id.scroll_view);
         scrollView.setOnScrollChangedListener(this);
     }
 

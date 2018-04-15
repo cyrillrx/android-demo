@@ -13,8 +13,6 @@ import com.cyrillrx.raspwatcher.utils.IntentKey;
 
 public class WatchActivity extends AppCompatActivity {
 
-    private VideoView mVideoView;
-
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -22,15 +20,15 @@ public class WatchActivity extends AppCompatActivity {
 
         final String videoUri = getIntent().getStringExtra(IntentKey.URI);
 
-        mVideoView = (VideoView) findViewById(R.id.videoView);
-        mVideoView.setVideoURI(Uri.parse(videoUri));
-        mVideoView.setOnPreparedListener(new MediaPlayer.OnPreparedListener() {
+        final VideoView videoView = findViewById(R.id.videoView);
+        videoView.setVideoURI(Uri.parse(videoUri));
+        videoView.setOnPreparedListener(new MediaPlayer.OnPreparedListener() {
             @Override
             public void onPrepared(MediaPlayer mediaPlayer) {
                 mediaPlayer.setLooping(true);
             }
         });
-        mVideoView.start();
+        videoView.start();
     }
 
     @Override

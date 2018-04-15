@@ -12,7 +12,7 @@ import android.widget.TextView;
  */
 public class MainActivity extends AppCompatActivity implements View.OnClickListener {
 
-    private static String PORT = "9090";
+    private static final String PORT = "9090";
     private TextView mTvIpAddress;
     private TextView mTvSubnet;
 
@@ -24,8 +24,8 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
 
         setContentView(R.layout.activity_main);
 
-        mTvIpAddress = (TextView) findViewById(android.R.id.text1);
-        mTvSubnet = (TextView) findViewById(android.R.id.text2);
+        mTvIpAddress = findViewById(android.R.id.text1);
+        mTvSubnet = findViewById(android.R.id.text2);
         findViewById(android.R.id.button1).setOnClickListener(this);
 
         populateNetworkInfo();
