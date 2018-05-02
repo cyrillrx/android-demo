@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
 
-<com.cyrillrx.android.component.scroll.ObservableScrollView
+<com.cyrillrx.android.widget.scroll.ObservableScrollView
     android:id="@+id/scroll_view"
     xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="match_parent"
@@ -102,4 +102,4 @@
             android:text="Fake text 4" />
     </LinearLayout>
 
-</com.cyrillrx.android.component.scroll.ObservableScrollView>
+</com.cyrillrx.android.widget.scroll.ObservableScrollView>
