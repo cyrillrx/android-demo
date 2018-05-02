@@ -14,7 +14,6 @@ import com.cyrillrx.android.demo.drawer.DoubleDrawerActivity;
 import com.cyrillrx.android.demo.drawer.SimpleDrawerActivity;
 import com.cyrillrx.android.demo.notification.NotificationActivity;
 import com.cyrillrx.android.demo.unlock.UnlockActivity;
-import com.cyrillrx.logger.Logger;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -25,8 +24,6 @@ public class DemoActivity extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_demo_home);
-
-        Logger.initialize();
 
         final List<Sample> samples = new ArrayList<>();
         samples.add(new Sample("UnlockActivity", "Touch all the targets to complete the activity.", UnlockActivity.class));
@@ -40,7 +37,7 @@ public class DemoActivity extends AppCompatActivity {
         samples.add(new Sample("Bottom nav", "", BottomNavActivity.class));
         samples.add(new Sample("Notification", "Display a simple notification.", NotificationActivity.class));
 
-        RecyclerView recyclerView = (RecyclerView) findViewById(android.R.id.list);
+        RecyclerView recyclerView = findViewById(android.R.id.list);
         // use this setting to improve performance if you know that changes
         // in content do not change the layout size of the RecyclerView
         recyclerView.setHasFixedSize(true);
