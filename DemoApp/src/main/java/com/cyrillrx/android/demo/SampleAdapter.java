@@ -2,6 +2,7 @@ package com.cyrillrx.android.demo;
 
 import android.content.Context;
 import android.content.Intent;
+import android.support.annotation.NonNull;
 import android.support.v7.widget.RecyclerView;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -37,6 +38,7 @@ public class SampleAdapter extends RecyclerView.Adapter<SampleAdapter.ViewHolder
         this.samples = samples;
     }
 
+    @NonNull
     @Override
     public ViewHolder onCreateViewHolder(ViewGroup parent, int viewType) {
         View view = LayoutInflater.from(parent.getContext()).inflate(R.layout.sample_list_item, parent, false);

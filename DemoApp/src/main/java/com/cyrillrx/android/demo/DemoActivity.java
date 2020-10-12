@@ -37,7 +37,7 @@ public class DemoActivity extends AppCompatActivity {
         samples.add(new Sample("Bottom nav", "", BottomNavActivity.class));
         samples.add(new Sample("Notification", "Display a simple notification.", NotificationActivity.class));
 
-        RecyclerView recyclerView = findViewById(android.R.id.list);
+        final RecyclerView recyclerView = findViewById(android.R.id.list);
         // use this setting to improve performance if you know that changes
         // in content do not change the layout size of the RecyclerView
         recyclerView.setHasFixedSize(true);

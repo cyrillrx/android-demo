@@ -13,8 +13,8 @@
     <dimen name="lock_size">90dp</dimen>
     <dimen name="lock_spacing">16dp</dimen>
 
-    <dimen name="text_title">24sp</dimen>
-    <dimen name="text_subtitle">16sp</dimen>
+    <dimen name="text_title">16sp</dimen>
+    <dimen name="text_subtitle">14sp</dimen>
     <dimen name="text_placeholder">20sp</dimen>
 
     <dimen name="touch_target">54dp</dimen>
