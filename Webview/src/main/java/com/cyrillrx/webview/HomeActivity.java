@@ -2,9 +2,10 @@ package com.cyrillrx.webview;
 
 import android.content.Intent;
 import android.os.Bundle;
-import android.support.v7.app.AppCompatActivity;
 import android.view.View;
 import android.widget.EditText;
+
+import androidx.appcompat.app.AppCompatActivity;
 
 import com.cyrillrx.webview.utils.IntentKey;
 
@@ -21,7 +22,7 @@ public class HomeActivity extends AppCompatActivity implements View.OnClickListe
 
         setContentView(R.layout.activity_main);
 
-        mEtVideoUri = (EditText) findViewById(R.id.et_video_uri);
+        mEtVideoUri = findViewById(R.id.et_video_uri);
         mEtVideoUri.setText("http://www.google.com");
 
         findViewById(R.id.btn_submit).setOnClickListener(this);

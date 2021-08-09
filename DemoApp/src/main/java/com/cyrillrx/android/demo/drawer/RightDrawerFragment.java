@@ -1,8 +1,6 @@
 package com.cyrillrx.android.demo.drawer;
 
 import android.os.Bundle;
-import android.support.v4.widget.DrawerLayout;
-import android.view.Gravity;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -10,11 +8,15 @@ import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
 import android.widget.ListView;
 
+import androidx.core.view.GravityCompat;
+import androidx.drawerlayout.widget.DrawerLayout;
+
 import com.cyrillrx.android.demo.R;
 
 public class RightDrawerFragment extends AbstractNavigationDrawerFragment {
 
-    public RightDrawerFragment() { }
+    public RightDrawerFragment() {
+    }
 
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
@@ -49,7 +51,7 @@ public class RightDrawerFragment extends AbstractNavigationDrawerFragment {
         this.drawerLayout = drawerLayout;
 
         // set a custom shadow that overlays the main content when the drawer opens
-        this.drawerLayout.setDrawerShadow(R.drawable.drawer_shadow_right, Gravity.END);
+        this.drawerLayout.setDrawerShadow(R.drawable.drawer_shadow_right, GravityCompat.END);
         // set up the drawer's list view with items and click listener
     }
 

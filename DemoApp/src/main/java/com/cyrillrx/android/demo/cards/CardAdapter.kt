@@ -1,178 +1,116 @@
-package com.cyrillrx.android.demo.cards;
+package com.cyrillrx.android.demo.cards
 
-import android.app.Activity;
-import android.content.Context;
-import android.graphics.PixelFormat;
-import android.support.annotation.IdRes;
-import android.support.annotation.NonNull;
-import android.support.v7.widget.CardView;
-import android.support.v7.widget.RecyclerView;
-import android.view.LayoutInflater;
-import android.view.MotionEvent;
-import android.view.View;
-import android.view.ViewGroup;
-import android.view.WindowManager;
-import android.widget.TextView;
-import android.widget.Toast;
-
-import com.cyrillrx.android.demo.CustomPopup;
-import com.cyrillrx.android.demo.R;
-import com.cyrillrx.logger.Logger;
+import android.app.Activity
+import android.content.Context
+import android.graphics.PixelFormat
+import android.view.LayoutInflater
+import android.view.MotionEvent
+import android.view.View
+import android.view.View.OnTouchListener
+import android.view.ViewGroup
+import android.view.WindowManager
+import android.widget.TextView
+import android.widget.Toast
+import androidx.annotation.IdRes
+import androidx.cardview.widget.CardView
+import androidx.recyclerview.widget.RecyclerView
+import com.cyrillrx.android.demo.CustomPopup
+import com.cyrillrx.android.demo.R
+import com.cyrillrx.logger.Logger
 
 /**
  * @author Cyril Leroux
  *         Created 14/12/2014.
  */
-public class CardAdapter extends RecyclerView.Adapter<CardAdapter.ViewHolder> {
+class CardAdapter(
+    private val dataSet: Array<String>,
+    private val scrollType: ScrollType = ScrollType.VERTICAL,
+) : RecyclerView.Adapter<CardAdapter.ViewHolder>() {
 
-    public enum ScrollType {HORIZONTAL, VERTICAL}
+    enum class ScrollType { HORIZONTAL, VERTICAL }
 
-    private String[] dataSet;
-    private ScrollType scrollType;
-
-    private CustomPopup customPopup;
-    private float touchX;
-    private float touchY;
-
-    private View.OnTouchListener touchListener = new View.OnTouchListener() {
-        @Override
-        public boolean onTouch(View v, MotionEvent event) {
-            if (event.getAction() == MotionEvent.ACTION_DOWN) {
-                Logger.debug("ContentViewHolder", "onTouch: " + event);
-                touchX = event.getRawX();
-                touchY = event.getRawY();
-            }
-            return false;
+    private var customPopup: CustomPopup? = null
+    private var touchX = 0f
+    private var touchY = 0f
+    private val touchListener = OnTouchListener { _, event ->
+        if (event.action == MotionEvent.ACTION_DOWN) {
+            Logger.debug("ContentViewHolder", "onTouch: $event")
+            touchX = event.rawX
+            touchY = event.rawY
         }
-    };
+        false
+    }
 
-    private View.OnTouchListener dispatchTouchListener = new View.OnTouchListener() {
-        @Override
-        public boolean onTouch(View v, MotionEvent event) {
+    private val dispatchTouchListener = OnTouchListener { _, event ->
+        val popup = customPopup ?: return@OnTouchListener false
 
-            final int action = event.getAction();
-            switch (action) {
-
-                case MotionEvent.ACTION_UP:
-                case MotionEvent.ACTION_MOVE:
-                    return customPopup.isShowing() && customPopup.dispatchTouchEvent(event);
-
-                default:
-                    return false;
-            }
-        }
-    };
-
-    public static class ViewHolder extends RecyclerView.ViewHolder {
-
-        public CardView cardView;
-
-        public ViewHolder(CardView v) {
-            super(v);
-            cardView = v;
+        when (event.action) {
+            MotionEvent.ACTION_UP,
+            MotionEvent.ACTION_MOVE,
+            -> popup.isShowing && popup.dispatchTouchEvent(event)
+            else -> false
         }
     }
 
-    // Provide a suitable constructor (depends on the kind of dataSet)
-    public CardAdapter(String[] dataSet, ScrollType scrollType) {
-        this.dataSet = dataSet;
-        this.scrollType = scrollType;
-    }
-
-    public CardAdapter(String[] dataSet) { this(dataSet, ScrollType.VERTICAL); }
+    class ViewHolder(var cardView: CardView) : RecyclerView.ViewHolder(cardView)
 
     // Create new views (invoked by the layout manager)
-    @NonNull
-    @Override
-    public ViewHolder onCreateViewHolder(@NonNull ViewGroup parent, int viewType) {
-        View v = LayoutInflater.from(parent.getContext()).inflate(getItemRes(), parent, false);
+    override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): ViewHolder {
+        val v = LayoutInflater.from(parent.context).inflate(getItemRes(), parent, false)
         //TODO Set the view's size, margins, paddings and layout parameters here
-        return new ViewHolder((CardView) v);
+        return ViewHolder(v as CardView)
     }
 
-    private int getItemRes() {
-        switch (scrollType) {
-
-            case HORIZONTAL:
-                return R.layout.card_item_h;
-
-            case VERTICAL:
-                return R.layout.card_item_v;
-
-            default:
-                return R.layout.card_item;
-        }
+    private fun getItemRes(): Int = when (scrollType) {
+        ScrollType.HORIZONTAL -> R.layout.card_item_h
+        ScrollType.VERTICAL -> R.layout.card_item_v
     }
 
     // Replace the contents of a view (invoked by the layout manager)
-    @Override
-    public void onBindViewHolder(@NonNull final ViewHolder viewHolder, int position) {
+    override fun onBindViewHolder(viewHolder: ViewHolder, position: Int) {
         // - get element from your dataset at this position
         // - replace the contents of the view with that element
-        ((TextView) viewHolder.cardView.findViewById(R.id.info_text)).setText(dataSet[position]);
-        viewHolder.itemView.setOnTouchListener(touchListener);
-        viewHolder.itemView.setOnLongClickListener(new View.OnLongClickListener() {
-            @Override
-            public boolean onLongClick(View v) {
-                return CardAdapter.this.onLongClick(v);
-            }
-        });
+        (viewHolder.cardView.findViewById<View>(R.id.info_text) as TextView).text = dataSet[position]
+        viewHolder.itemView.setOnTouchListener(touchListener)
+        viewHolder.itemView.setOnLongClickListener { v -> onLongClick(v) }
     }
 
-    @Override
-    public int getItemCount() { return dataSet.length; }
+    override fun getItemCount(): Int = dataSet.size
 
-    protected boolean onLongClick(final View v) {
+    private fun onLongClick(v: View): Boolean {
+        val applicationContext = v.context.applicationContext
+        val popup = getPopup(v.context).also { customPopup = it }
 
-        final Context applicationContext = v.getContext().getApplicationContext();
-
-        customPopup = getPopup(v.getContext());
         // Displaying the popup at the specified location, + offsets.
-        if (!customPopup.show(touchX, touchY)) {
-            return false;
+        if (popup.show(touchX, touchY)) {
+            return false
         }
 
         // After a long click, dispatch down and move actions to the popup
-        v.setOnTouchListener(dispatchTouchListener);
+        v.setOnTouchListener(dispatchTouchListener)
 
         // Prevent parent and its ancestors to intercept touch events
-        v.getParent().requestDisallowInterceptTouchEvent(true);
-
-        customPopup.setResultListener(new CustomPopup.OnDismissListener() {
-
-            @Override
-            public void onDismiss(@IdRes int viewId) {
-                resetTouch();
-
-                switch (viewId) {
-
-                    case R.id.btn_1:
-                        Toast.makeText(applicationContext, "Btn1", Toast.LENGTH_SHORT).show();
-                        break;
-
-                    case R.id.btn_2:
-                        Toast.makeText(applicationContext, "Btn2", Toast.LENGTH_SHORT).show();
-                        break;
-
-                    case R.id.btn_3:
-                        Toast.makeText(applicationContext, "Btn3", Toast.LENGTH_SHORT).show();
-                        break;
-
-                    default:
-                        // Dismissed
+        v.parent.requestDisallowInterceptTouchEvent(true)
+        popup.setResultListener(object : CustomPopup.OnDismissListener {
+            override fun onDismiss(@IdRes viewId: Int) {
+                resetTouch()
+                when (viewId) {
+                    R.id.btn_1 -> Toast.makeText(applicationContext, "Btn1", Toast.LENGTH_SHORT).show()
+                    R.id.btn_2 -> Toast.makeText(applicationContext, "Btn2", Toast.LENGTH_SHORT).show()
+                    R.id.btn_3 -> Toast.makeText(applicationContext, "Btn3", Toast.LENGTH_SHORT).show()
+                    else -> {
+                    }
                 }
             }
 
-            private void resetTouch() {
+            private fun resetTouch() {
                 // Reset touch Listener
-                v.setOnTouchListener(touchListener);
+                v.setOnTouchListener(touchListener)
                 // Allow parent and its ancestors to intercept touch events
-                v.getParent().requestDisallowInterceptTouchEvent(false);
-
+                v.parent.requestDisallowInterceptTouchEvent(false)
             }
-        });
-
-        return true;
+        })
+        return true
     }
 
     /**
@@ -181,19 +119,19 @@ public class CardAdapter extends RecyclerView.Adapter<CardAdapter.ViewHolder> {
      *
      * @return The Contextual popup.
      */
-    private CustomPopup getPopup(Context context) {
+    private fun getPopup(context: Context): CustomPopup = customPopup ?: createPopup(context).also { customPopup = it }
 
-        if (customPopup == null) {
-            // Creating and add the view to the Windows manager
-            customPopup = new CustomPopup(context);
-            ((Activity) context).getWindowManager()
-                    .addView(customPopup,
-                            new WindowManager.LayoutParams(
-                                    WindowManager.LayoutParams.TYPE_APPLICATION_PANEL,
-                                    WindowManager.LayoutParams.FLAG_SPLIT_TOUCH,
-                                    PixelFormat.TRANSPARENT
-                            ));
-        }
-        return customPopup;
+    private fun createPopup(context: Context): CustomPopup {
+        val popup = CustomPopup(context)
+
+        (context as Activity).windowManager
+            .addView(popup,
+                WindowManager.LayoutParams(
+                    WindowManager.LayoutParams.TYPE_APPLICATION_PANEL,
+                    WindowManager.LayoutParams.FLAG_SPLIT_TOUCH,
+                    PixelFormat.TRANSPARENT
+                ))
+
+        return popup
     }
 }

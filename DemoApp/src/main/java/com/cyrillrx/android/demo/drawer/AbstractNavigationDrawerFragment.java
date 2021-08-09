@@ -3,15 +3,16 @@ package com.cyrillrx.android.demo.drawer;
 import android.app.Activity;
 import android.app.Fragment;
 import android.os.Bundle;
-import android.support.v4.widget.DrawerLayout;
-import android.support.v7.app.ActionBar;
-import android.support.v7.app.AppCompatActivity;
-import android.view.Gravity;
 import android.view.Menu;
 import android.view.MenuInflater;
 import android.view.MenuItem;
 import android.view.View;
 import android.widget.ListView;
+
+import androidx.appcompat.app.ActionBar;
+import androidx.appcompat.app.AppCompatActivity;
+import androidx.core.view.GravityCompat;
+import androidx.drawerlayout.widget.DrawerLayout;
 
 import com.cyrillrx.android.demo.R;
 
@@ -39,7 +40,8 @@ public abstract class AbstractNavigationDrawerFragment extends Fragment {
     protected int currentSelectedPosition = 0;
     protected boolean fromSavedInstanceState;
 
-    public AbstractNavigationDrawerFragment() { }
+    public AbstractNavigationDrawerFragment() {
+    }
 
     @Override
     public void onCreate(Bundle savedInstanceState) {
@@ -98,14 +100,14 @@ public abstract class AbstractNavigationDrawerFragment extends Fragment {
     public boolean onOptionsItemSelected(MenuItem item) {
 
         if (item.getItemId() == R.id.action_example) {
-            if (drawerLayout.isDrawerVisible(Gravity.END)) {
-                drawerLayout.closeDrawer(Gravity.END);
+            if (drawerLayout.isDrawerVisible(GravityCompat.END)) {
+                drawerLayout.closeDrawer(GravityCompat.END);
             } else {
                 // Close the left drawer if necessary
-                if (drawerLayout.isDrawerVisible(Gravity.START)) {
-                    drawerLayout.closeDrawer(Gravity.START);
+                if (drawerLayout.isDrawerVisible(GravityCompat.START)) {
+                    drawerLayout.closeDrawer(GravityCompat.START);
                 }
-                drawerLayout.openDrawer(Gravity.END);
+                drawerLayout.openDrawer(GravityCompat.END);
             }
             return true;
         }

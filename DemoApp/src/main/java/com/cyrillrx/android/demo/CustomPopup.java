@@ -10,7 +10,6 @@ import android.content.Context;
 import android.graphics.Point;
 import android.graphics.PointF;
 import android.os.Build;
-import android.support.annotation.IdRes;
 import android.util.AttributeSet;
 import android.view.Display;
 import android.view.MotionEvent;
@@ -18,6 +17,8 @@ import android.view.View;
 import android.view.animation.AccelerateInterpolator;
 import android.view.animation.OvershootInterpolator;
 import android.widget.FrameLayout;
+
+import androidx.annotation.IdRes;
 
 import com.cyrillrx.android.demo.utils.AnimUtils;
 

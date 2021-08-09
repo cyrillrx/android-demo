@@ -2,10 +2,6 @@ package com.cyrillrx.android.demo.drawer;
 
 import android.content.res.Configuration;
 import android.os.Bundle;
-import android.support.v4.widget.DrawerLayout;
-import android.support.v7.app.ActionBar;
-import android.support.v7.app.ActionBarDrawerToggle;
-import android.view.Gravity;
 import android.view.LayoutInflater;
 import android.view.MenuItem;
 import android.view.View;
@@ -13,6 +9,11 @@ import android.view.ViewGroup;
 import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
 import android.widget.ListView;
+
+import androidx.appcompat.app.ActionBar;
+import androidx.appcompat.app.ActionBarDrawerToggle;
+import androidx.core.view.GravityCompat;
+import androidx.drawerlayout.widget.DrawerLayout;
 
 import com.cyrillrx.android.demo.R;
 
@@ -23,7 +24,8 @@ public class LeftDrawerFragment extends AbstractNavigationDrawerFragment {
      */
     private ActionBarDrawerToggle drawerToggle;
 
-    public LeftDrawerFragment() { }
+    public LeftDrawerFragment() {
+    }
 
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
@@ -59,8 +61,8 @@ public class LeftDrawerFragment extends AbstractNavigationDrawerFragment {
     public boolean onOptionsItemSelected(MenuItem item) {
         if (drawerToggle.onOptionsItemSelected(item)) {
             // Close the right drawer if necessary
-            if (drawerLayout.isDrawerVisible(Gravity.END)) {
-                drawerLayout.closeDrawer(Gravity.END);
+            if (drawerLayout.isDrawerVisible(GravityCompat.END)) {
+                drawerLayout.closeDrawer(GravityCompat.END);
             }
             return true;
         }
@@ -78,7 +80,7 @@ public class LeftDrawerFragment extends AbstractNavigationDrawerFragment {
         this.drawerLayout = drawerLayout;
 
         // set a custom shadow that overlays the main content when the drawer opens
-        this.drawerLayout.setDrawerShadow(R.drawable.drawer_shadow_left, Gravity.START);
+        this.drawerLayout.setDrawerShadow(R.drawable.drawer_shadow_left, GravityCompat.START);
         // set up the drawer's list view with items and click listener
 
         ActionBar actionBar = getActionBar();
@@ -115,7 +117,9 @@ public class LeftDrawerFragment extends AbstractNavigationDrawerFragment {
         // Defer code dependent on restoration of previous instance state.
         this.drawerLayout.post(new Runnable() {
             @Override
-            public void run() { drawerToggle.syncState(); }
+            public void run() {
+                drawerToggle.syncState();
+            }
         });
 
         this.drawerLayout.setDrawerListener(drawerToggle);

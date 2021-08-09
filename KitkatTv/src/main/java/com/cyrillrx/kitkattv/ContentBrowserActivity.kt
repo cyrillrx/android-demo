@@ -1,27 +1,21 @@
-package com.cyrillrx.kitkattv;
+package com.cyrillrx.kitkattv
 
-import android.app.Activity;
-import android.app.FragmentManager;
-import android.os.Bundle;
-import android.support.v17.leanback.app.BrowseFragment;
+import androidx.appcompat.app.AppCompatActivity
+import android.os.Bundle
+import androidx.leanback.app.BrowseSupportFragment
 
 /**
  * Created on 19/11/14.
  */
-public class ContentBrowserActivity extends Activity {
+class ContentBrowserActivity : AppCompatActivity() {
 
-    protected ContentBrowserFragment mBrowseFragment;
+    override fun onCreate(savedInstanceState: Bundle?) {
+        super.onCreate(savedInstanceState)
+        setContentView(R.layout.browse_fragment)
 
-    @Override
-    protected void onCreate(Bundle savedInstanceState) {
-        super.onCreate(savedInstanceState);
-        setContentView(R.layout.browse_fragment);
-
-        final FragmentManager fragmentManager = getFragmentManager();
-        mBrowseFragment = (ContentBrowserFragment) fragmentManager.findFragmentById(R.id.browse_fragment);
-
-        mBrowseFragment.setHeadersState(BrowseFragment.HEADERS_ENABLED);
-        mBrowseFragment.setTitle(getString(R.string.app_name));
-        mBrowseFragment.setBadgeDrawable(getResources().getDrawable(R.drawable.ic_launcher));
+        val browseFragment =  supportFragmentManager.findFragmentById(R.id.browse_fragment) as ContentBrowserFragment
+        browseFragment.headersState = BrowseSupportFragment.HEADERS_ENABLED
+        browseFragment.title = getString(R.string.app_name)
+        browseFragment.badgeDrawable = resources.getDrawable(R.drawable.ic_launcher)
     }
 }

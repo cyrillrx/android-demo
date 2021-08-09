@@ -1,11 +1,12 @@
 package com.cyrillrx.android.demo.unlock;
 
 import android.os.Bundle;
-import android.support.v7.app.AppCompatActivity;
 import android.view.MotionEvent;
 import android.view.View;
 import android.widget.ProgressBar;
 import android.widget.Toast;
+
+import androidx.appcompat.app.AppCompatActivity;
 
 import com.cyrillrx.android.demo.R;
 import com.cyrillrx.android.toolbox.CompletionListener;
@@ -165,7 +166,9 @@ public class UnlockActivity extends AppCompatActivity implements View.OnTouchLis
         public void startEmptying(int pointerId) {
 
             // If the pointer up is not the one bond to the progress,
-            if (pointerId != mPointerId) {return;}
+            if (pointerId != mPointerId) {
+                return;
+            }
 
             int progress = mProgress.getProgress();
             cancel();

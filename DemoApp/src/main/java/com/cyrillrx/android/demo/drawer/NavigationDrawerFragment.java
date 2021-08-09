@@ -2,10 +2,6 @@ package com.cyrillrx.android.demo.drawer;
 
 import android.content.res.Configuration;
 import android.os.Bundle;
-import android.support.v4.view.GravityCompat;
-import android.support.v4.widget.DrawerLayout;
-import android.support.v7.app.ActionBar;
-import android.support.v7.app.ActionBarDrawerToggle;
 import android.view.LayoutInflater;
 import android.view.MenuItem;
 import android.view.View;
@@ -14,6 +10,11 @@ import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
 import android.widget.ListView;
 import android.widget.Toast;
+
+import androidx.appcompat.app.ActionBar;
+import androidx.appcompat.app.ActionBarDrawerToggle;
+import androidx.core.view.GravityCompat;
+import androidx.drawerlayout.widget.DrawerLayout;
 
 import com.cyrillrx.android.demo.R;
 
@@ -29,7 +30,8 @@ public class NavigationDrawerFragment extends AbstractNavigationDrawerFragment {
      */
     private ActionBarDrawerToggle drawerToggle;
 
-    public NavigationDrawerFragment() { }
+    public NavigationDrawerFragment() {
+    }
 
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
@@ -125,7 +127,9 @@ public class NavigationDrawerFragment extends AbstractNavigationDrawerFragment {
         // Defer code dependent on restoration of previous instance state.
         this.drawerLayout.post(new Runnable() {
             @Override
-            public void run() { drawerToggle.syncState(); }
+            public void run() {
+                drawerToggle.syncState();
+            }
         });
 
         this.drawerLayout.setDrawerListener(drawerToggle);

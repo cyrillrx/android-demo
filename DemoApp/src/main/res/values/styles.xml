@@ -6,7 +6,7 @@
         Base application themes
     -->
 
-    <style name="BaseCompatTheme" parent="Theme.AppCompat.Light.DarkActionBar" />
+    <style name="BaseCompatTheme" parent="Theme.MaterialComponents.Light.DarkActionBar" />
 
     <style name="AppTheme" parent="BaseCompatTheme">
         <item name="colorPrimary">@color/primary</item>
@@ -17,7 +17,7 @@
     <!--
         Compat themes
     -->
-    <style name="Transparent" parent="Theme.AppCompat.Light.NoActionBar">
+    <style name="Transparent" parent="Theme.MaterialComponents.Light.NoActionBar">
         <item name="android:windowIsTranslucent">true</item>
         <item name="android:windowBackground">@android:color/transparent</item>
         <!--<item name="android:windowContentOverlay">@null</item>-->
@@ -35,7 +35,9 @@
     <style name="DoubleNavTheme" parent="AppTheme">
         <item name="windowActionBar">false</item>
         <item name="windowNoTitle">true</item>
-        <item name="windowActionModeOverlay">true</item>
+        <item name="android:windowActionModeOverlay">true</item>
+        <item name="android:windowDrawsSystemBarBackgrounds">true</item>
+        <item name="android:windowTranslucentStatus">true</item>
     </style>
 
     <style name="FadingActionBar" parent="AppTheme">
@@ -50,6 +52,7 @@
 
     <style name="BaseText">
         <item name="android:textColor">@android:color/primary_text_light</item>
+        <item name="android:fontFamily">sans-serif</item>
     </style>
 
     <style name="sample_title" parent="BaseText">

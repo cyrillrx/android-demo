@@ -2,13 +2,14 @@ package com.cyrillrx.network.discovery;
 
 import android.net.wifi.WifiManager;
 import android.os.Bundle;
-import android.support.v7.app.AppCompatActivity;
 import android.view.View;
 import android.widget.TextView;
 
+import androidx.appcompat.app.AppCompatActivity;
+
 /**
  * @author Cyril Leroux
- *         Created 09/11/2014.
+ * Created 09/11/2014.
  */
 public class MainActivity extends AppCompatActivity implements View.OnClickListener {
 

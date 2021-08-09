@@ -1,4 +1,5 @@
 apply plugin: 'com.android.application'
+apply plugin: 'kotlin-android'
 
 android {
     compileSdkVersion project.compileSdkVersion
@@ -26,5 +27,8 @@ android {
 }
 
 dependencies {
-    implementation "com.android.support:appcompat-v7:28.0.0"
+    implementation("org.jetbrains.kotlin:kotlin-stdlib-jdk7:$kotlin_version")
+    implementation("androidx.core:core-ktx:1.6.0")
+
+    implementation("com.google.android.material:material:1.4.0")
 }
